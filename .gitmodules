@@ -1,0 +1,3 @@
+[submodule "ai-tool-directory"]
+    path = ai-tool-directory
+    url = https://github.com/chenyichao1993/ai-tool-directory.git 
