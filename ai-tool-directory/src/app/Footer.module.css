@@ -1,0 +1,234 @@
+.footer {
+  width: 100%;
+  /* background: #f7fbfd; */
+  border-top: 1px solid #e5e7eb;
+  padding: 40px 0 0 0;
+  /* margin-top: 48px; 删除这行，去掉留白 */
+  font-size: 15px;
+  color: #222;
+  margin-left: 0;
+  transition: margin-left 0.3s;
+}
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px 32px 32px;
+  gap: 32px;
+  margin-left: 0;
+}
+.brand {
+  min-width: 220px;
+}
+.logoRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.siteName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #222;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: 1.1;
+  margin-left: 0;
+}
+.slogan {
+  color: #2d3748;
+  font-size: 1rem;
+  margin-top: 2px;
+}
+.linksWrap {
+  display: flex;
+  gap: 48px;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 140px;
+}
+.colTitle {
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+}
+.link {
+  color: #1b7e5a;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.link:hover {
+  color: #0e4d32;
+  text-decoration: underline;
+}
+.bottom {
+  margin-top: 12px;
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 0;
+}
+.bottomLinks {
+  display: flex;
+  gap: 18px;
+}
+.fullDivider {
+  width: 100%;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0 0 12px 0;
+}
+.contactModalOverlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.18);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contactModalContent {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.13);
+  padding: 32px 28px 24px 28px;
+  min-width: 260px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.2s;
+}
+.contactModalTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #222;
+  text-align: center;
+}
+.contactModalEmail {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 22px;
+  word-break: break-all;
+  text-align: center;
+}
+.contactModalBtnRow {
+  display: flex;
+  gap: 16px;
+}
+.contactModalButton {
+  background: #7c5cff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.contactModalButton:hover {
+  background: #5a3fd4;
+}
+.contactModalButtonSecondary {
+  background: #eee;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 22px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.18s;
+  outline: none;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.contactModalButtonSecondary:hover {
+  background: #d5d5d5;
+}
+@media (max-width: 900px) {
+  .top {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 8px 24px 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+  .linksWrap {
+    gap: 4px;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    justify-content: space-between;
+  }
+  .col {
+    min-width: 80px;
+    flex: 1;
+  }
+  .bottom {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px 4px;
+    font-size: 13px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .footer {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+@media (min-width: 768px) {
+  .top {
+    margin-left: 260px;
+  }
+  .bottom {
+    margin-left: 260px;
+  }
+}
+@media (max-width: 600px) {
+  .contactModalContent {
+    min-width: 0;
+    width: 92vw;
+    padding: 20px 6vw 16px 6vw;
+  }
+  .contactModalTitle {
+    font-size: 1.1rem;
+  }
+  .contactModalEmail {
+    font-size: 0.98rem;
+  }
+  .contactModalButton {
+    font-size: 0.98rem;
+    padding: 7px 14px;
+  }
+  .contactModalButtonSecondary {
+    font-size: 0.98rem;
+    padding: 7px 14px;
+  }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+} 
