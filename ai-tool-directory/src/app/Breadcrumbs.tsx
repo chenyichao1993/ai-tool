@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 interface Crumb {
   name: string;
@@ -20,6 +21,19 @@ const routeMap: Record<string, string> = {
 
 export default function Breadcrumbs({ paths }: BreadcrumbsProps) {
   const pathname = usePathname();
+
+  // 新增：用 state 保存当前是否移动端
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 只在客户端执行
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 600);
+    }
+    handleResize(); // 首次挂载时判断
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // 自动模式：根据当前路径生成面包屑
   let crumbs: Crumb[] = [];
@@ -50,7 +64,7 @@ export default function Breadcrumbs({ paths }: BreadcrumbsProps) {
 
   // 移动端只显示Home、上一级、当前页
   let mobileCrumbs = crumbs;
-  if (typeof window !== 'undefined' && window.innerWidth <= 600 && crumbs.length > 3) {
+  if (isMobile && crumbs.length > 3) {
     mobileCrumbs = [crumbs[0], crumbs[crumbs.length - 2], crumbs[crumbs.length - 1]];
   }
 
@@ -59,11 +73,11 @@ export default function Breadcrumbs({ paths }: BreadcrumbsProps) {
       <ol
         className="flex items-center space-x-2 md:space-x-2 breadcrumb-mobile-wrap"
       >
-        {(typeof window !== 'undefined' && window.innerWidth <= 600 ? mobileCrumbs : crumbs).map((crumb, idx, arr) => (
+        {(isMobile ? mobileCrumbs : crumbs).map((crumb, idx, arr) => (
           <li
             key={idx}
             className="flex items-center breadcrumb-mobile-item"
-            style={{ fontSize: window.innerWidth <= 600 ? '13px' : undefined, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-all', marginRight: window.innerWidth <= 600 ? 2 : undefined }}
+            style={{ fontSize: isMobile ? '13px' : undefined, minWidth: 0, overflowWrap: 'anywhere', wordBreak: 'break-all', marginRight: isMobile ? 2 : undefined }}
           >
             {idx > 0 && <span className="mx-1 text-gray-400">&gt;</span>}
             {crumb.href ? (

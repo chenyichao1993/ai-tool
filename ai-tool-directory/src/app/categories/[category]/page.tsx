@@ -15,7 +15,7 @@ interface Tool {
   screenshot?: string;
 }
 
-export default function CategoryPage({ params }: { params: { category: string } }) {
+export default function Page(props: any) {
   const [allTools, setAllTools] = useState<Tool[]>([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
 
   useEffect(() => {
     if (allTools.length > 0) {
-      const slugToFind = decodeURIComponent(params.category);
+      const slugToFind = decodeURIComponent(props.params.category);
       // 找到原始分类名
       const matchedTools = allTools.filter(tool =>
         tool.category && tool.category.toLowerCase().replace(/\s+/g, '-') === slugToFind
@@ -50,7 +50,7 @@ export default function CategoryPage({ params }: { params: { category: string } 
       }
       setLoading(false);
     }
-  }, [allTools, params.category]);
+  }, [allTools, props.params.category]);
 
   return (
     <main className="min-h-screen bg-gray-50">

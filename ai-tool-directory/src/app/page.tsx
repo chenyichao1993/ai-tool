@@ -43,7 +43,7 @@ export default function Home() {
       })
       .then((data) => {
         // 为每个工具自动生成id字段
-        const toolsWithId = data.map((tool) => ({
+        const toolsWithId = data.map((tool: any) => ({
           ...tool,
           id: tool.name ? tool.name.toLowerCase().replace(/\s+/g, '-') : 'unknown'
         }));

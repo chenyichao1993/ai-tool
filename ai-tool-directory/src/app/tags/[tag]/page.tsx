@@ -28,7 +28,7 @@ function getLogoUrl(websiteUrl: string) {
   }
 }
 
-export default function TagPage({ params }: { params: { tag: string } }) {
+export default function Page(props: any) {
   const [allTools, setAllTools] = useState<Tool[]>([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +48,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
 
   useEffect(() => {
     if (allTools.length > 0) {
-      const slugToFind = decodeURIComponent(params.tag);
+      const slugToFind = decodeURIComponent(props.params.tag);
       
       const results = allTools.filter(tool => 
         tool.tags?.some(t => (t.toLowerCase().replace(/\s+/g, '-')) === slugToFind)
@@ -71,7 +71,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
       }
       setLoading(false);
     }
-  }, [allTools, params.tag]);
+  }, [allTools, props.params.tag]);
 
   return (
     <main className="min-h-screen bg-gray-50">

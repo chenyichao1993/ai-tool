@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Breadcrumbs from '../../Breadcrumbs'
 
+type Crumb = { name: string; href?: string };
+
 // 星级评分组件
 function StarRating({ rating }: { rating: number }) {
   const fullStars = Math.floor(rating)
@@ -38,7 +40,7 @@ function StarRating({ rating }: { rating: number }) {
   )
 }
 
-export default function ToolDetailPage({ params }: { params: { id: string } }) {
+export default function ToolDetailPage(props: any) {
   const [tool, setTool] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [copySuccess, setCopySuccess] = useState(false)
@@ -51,14 +53,14 @@ export default function ToolDetailPage({ params }: { params: { id: string } }) {
           ...tool,
           id: tool.name ? tool.name.toLowerCase().replace(/\s+/g, '-') : 'unknown'
         }))
-        const found = toolsWithId.find((t: any) => t.id === params.id)
+        const found = toolsWithId.find((t: any) => t.id === props.params.id)
         setTool(found)
         setLoading(false)
       })
       .catch(() => {
         setLoading(false)
       })
-  }, [params.id])
+  }, [props.params.id])
 
   if (loading) {
     return <div className="text-center py-20 text-gray-500">Loading...</div>
@@ -86,8 +88,8 @@ export default function ToolDetailPage({ params }: { params: { id: string } }) {
           { name: 'Home', href: '/' },
           { name: 'Category', href: '/categories' },
           tool.category ? { name: tool.category, href: `/categories/${encodeURIComponent(tool.category.toLowerCase().replace(/\s+/g, '-') )}` } : null,
-          { name: tool.name }
-        ].filter(Boolean)} />
+          tool.name ? { name: tool.name } : null,
+        ].filter(Boolean) as Crumb[]} />
         {/* Main content */}
         <div className="flex flex-col md:flex-row items-start md:items-center md:space-x-8">
           {/* Left: Name, Intro, Button, Social */}

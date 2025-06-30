@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import BackToTop from "./BackToTop";
 import Navbar from "./Navbar";
@@ -8,28 +7,18 @@ import localFont from 'next/font/local';
 
 const geist = localFont({
   src: [
-    {
-      path: '../../public/fonts/Geist-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/Geist-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
+    { path: './fonts/Geist-Regular.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/Geist-Bold.woff2', weight: '700', style: 'normal' }
   ],
-  variable: '--font-geist',
+  variable: '--font-geist'
 });
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const geistMono = localFont({
+  src: [
+    { path: './fonts/GeistMono-Regular.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/GeistMono-Bold.woff2', weight: '700', style: 'normal' }
+  ],
+  variable: '--font-geist-mono'
 });
 
 export const metadata: Metadata = {
@@ -46,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geist.className}>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
       <body>
         <Navbar />
         {/* 其他内容 */}
