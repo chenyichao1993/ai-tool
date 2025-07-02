@@ -84,7 +84,7 @@ export default function ToolClient(props: any) {
           { name: 'Category', href: '/categories' },
           tool.category ? { name: tool.category, href: `/categories/${encodeURIComponent(tool.category.toLowerCase().replace(/\s+/g, '-') )}` } : null,
           tool.name ? { name: tool.name } : null,
-        ].filter(Boolean)} />
+        ].filter(Boolean) as Crumb[]} />
         <div className="flex flex-col md:flex-row items-start md:items-center md:space-x-8">
           <div className="flex-1 min-w-0">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">{tool.name}</h1>
