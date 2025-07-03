@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Breadcrumbs from '../../Breadcrumbs';
 
+// 面包屑导航类型
+export type Crumb = { name: string; href?: string };
+
 // 星级评分组件
 function StarRating({ rating }: { rating: number }) {
   const fullStars = Math.floor(rating);
