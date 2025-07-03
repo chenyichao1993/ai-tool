@@ -36,6 +36,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
+      <head>
+        {/* Google Analytics 代码 */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YZDFWD1MK"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-3YZDFWD1MK');
+            `,
+          }}
+        />
+      </head>
       <body>
         <Navbar />
         {/* 其他内容 */}
