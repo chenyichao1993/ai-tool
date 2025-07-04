@@ -13,7 +13,7 @@ interface Tool {
   screenshot?: string;
 }
 
-export default function CategoryClient({ categorySlug }: { categorySlug: string }) {
+export default function CategoryClient({ categorySlug, categoryName }: { categorySlug: string; categoryName?: string | null }) {
   const [allTools, setAllTools] = useState<Tool[]>([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
@@ -54,7 +54,7 @@ export default function CategoryClient({ categorySlug }: { categorySlug: string 
         <Breadcrumbs />
         <div className="category-title-wrap mb-8">
           <h1 className="category-title text-3xl font-bold text-gray-900 mb-2">
-            {displayCategory}{/tools$/i.test(displayCategory.trim()) ? '' : ' Tools'}
+            {categoryName || categorySlug}{/tools$/i.test(displayCategory.trim()) ? '' : ' Tools'}
           </h1>
         </div>
         {loading ? (

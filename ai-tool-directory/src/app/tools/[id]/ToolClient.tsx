@@ -39,7 +39,15 @@ function StarRating({ rating }: { rating: number }) {
   );
 }
 
-export default function ToolClient(props: any) {
+function slugifyToolName(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+export default function ToolClient(props: { id: string; toolName?: string | null }) {
   const [tool, setTool] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [copySuccess, setCopySuccess] = useState(false);
@@ -50,7 +58,7 @@ export default function ToolClient(props: any) {
       .then(data => {
         const toolsWithId = data.map((tool: any) => ({
           ...tool,
-          id: tool.name ? tool.name.toLowerCase().replace(/\s+/g, '-') : 'unknown'
+          id: slugifyToolName(tool.name || 'unknown')
         }));
         const found = toolsWithId.find((t: any) => t.id === props.id);
         setTool(found);
@@ -90,7 +98,7 @@ export default function ToolClient(props: any) {
         ].filter(Boolean) as Crumb[]} />
         <div className="flex flex-col md:flex-row items-start md:items-center md:space-x-8">
           <div className="flex-1 min-w-0">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">{tool.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4">{props.toolName || tool.id}</h1>
             <p className="text-base text-gray-700 mb-4">{tool.description}</p>
             <div className="flex items-center gap-6 mb-4">
               <div className="flex items-center gap-2">

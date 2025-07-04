@@ -25,7 +25,15 @@ function getLogoUrl(websiteUrl: string) {
   }
 }
 
-export default function TagClient({ tagSlug }: { tagSlug: string }) {
+function slugifyTag(tag: string) {
+  return tag
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+export default function TagClient({ tagSlug, tagName }: { tagSlug: string; tagName?: string | null }) {
   const [allTools, setAllTools] = useState<Tool[]>([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
@@ -47,11 +55,11 @@ export default function TagClient({ tagSlug }: { tagSlug: string }) {
     if (allTools.length > 0) {
       const slugToFind = decodeURIComponent(tagSlug);
       const results = allTools.filter(tool =>
-        tool.tags?.some(t => (t.toLowerCase().replace(/\s+/g, '-')) === slugToFind)
+        tool.tags?.some(t => slugifyTag(t) === slugToFind)
       );
       setFilteredTools(results);
       if (results.length > 0) {
-        const matchingTag = results[0].tags.find(t => (t.toLowerCase().replace(/\s+/g, '-')) === slugToFind);
+        const matchingTag = results[0].tags.find(t => slugifyTag(t) === slugToFind);
         setDisplayTag(matchingTag || '');
       } else {
         const fallbackTag = slugToFind
@@ -75,7 +83,7 @@ export default function TagClient({ tagSlug }: { tagSlug: string }) {
               <span className="text-black">Best </span>
               <span className="text-black">{filteredTools.length}</span>
               <span className="text-black"> </span>
-              <span className="text-[#7C5CFA]">{displayTag}</span>
+              <span className="text-[#7C5CFA]">{tagName || tagSlug}</span>
               <span className="text-black"> Tools</span>
             </h1>
           </div>
@@ -91,7 +99,7 @@ export default function TagClient({ tagSlug }: { tagSlug: string }) {
         ) : (
           <div className="text-center text-gray-500 py-16">
             <h3 className="text-xl font-semibold">No tools found</h3>
-            <p>We couldn't find any tools with the tag "{displayTag}".</p>
+            <p>We couldn't find any tools with the tag "{tagName || tagSlug}".</p>
           </div>
         )}
       </div>
