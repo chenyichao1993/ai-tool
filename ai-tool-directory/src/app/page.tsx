@@ -25,6 +25,15 @@ function getLogoUrl(websiteUrl: string) {
   }
 }
 
+// 在文件顶部引入 slugifyCategory
+function slugifyCategory(category: string) {
+  return category
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
 export default function Home() {
   const [tools, setTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
@@ -86,7 +95,7 @@ export default function Home() {
 
   // 首页分组瀑布流：每组显示前8个，按钮始终显示，点击跳转新页面
   function handleShowAll(cat: string) {
-    window.open(`/categories/${encodeURIComponent(cat.toLowerCase().replace(/\s+/g, '-'))}`, '_blank');
+    window.open(`/categories/${slugifyCategory(cat)}`, '_blank');
   }
 
   return (
@@ -223,7 +232,7 @@ export default function Home() {
                   <h2 className="text-2xl font-bold text-gray-900">{selectedCategory}</h2>
                   <button
                     className="text-indigo-600 hover:underline text-sm font-medium"
-                    onClick={() => window.open(`/categories/${encodeURIComponent(selectedCategory.toLowerCase().replace(/\s+/g, '-'))}`, '_blank')}
+                    onClick={() => window.open(`/categories/${slugifyCategory(selectedCategory)}`, '_blank')}
                   >
                     More »
                   </button>

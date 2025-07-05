@@ -45,6 +45,15 @@ const categoryMeta: Record<string, { icon: string; desc: string }> = {
   }
 };
 
+// 在文件顶部引入 slugifyCategory
+function slugifyCategory(category: string) {
+  return category
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
 export default function CategoriesPage() {
   // 新增：用来保存异步加载的工具数据
   const [tools, setTools] = useState<any[]>([]);
@@ -93,7 +102,7 @@ export default function CategoriesPage() {
             return (
               <Link
                 key={cat.name}
-                href={`/categories/${encodeURIComponent(cat.name.toLowerCase().replace(/\s+/g, '-'))}`}
+                href={`/categories/${slugifyCategory(cat.name)}`}
                 className="block p-6 rounded-xl shadow bg-white hover:bg-indigo-50 border border-gray-200 transition group relative"
                 style={{ minHeight: 180 }}
               >

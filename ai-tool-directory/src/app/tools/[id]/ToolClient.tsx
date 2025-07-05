@@ -47,6 +47,14 @@ function slugifyToolName(name: string) {
     .replace(/[^a-z0-9-]/g, '');
 }
 
+function slugifyCategory(category: string) {
+  return category
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
 export default function ToolClient(props: { id: string; toolName?: string | null }) {
   const [tool, setTool] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -93,7 +101,7 @@ export default function ToolClient(props: { id: string; toolName?: string | null
         <Breadcrumbs paths={[
           { name: 'Home', href: '/' },
           { name: 'Category', href: '/categories' },
-          tool.category ? { name: tool.category, href: `/categories/${encodeURIComponent(tool.category.toLowerCase().replace(/\s+/g, '-') )}` } : null,
+          tool.category ? { name: tool.category, href: `/categories/${slugifyCategory(tool.category)}` } : null,
           tool.name ? { name: tool.name } : null,
         ].filter(Boolean) as Crumb[]} />
         <div className="flex flex-col md:flex-row items-start md:items-center md:space-x-8">
