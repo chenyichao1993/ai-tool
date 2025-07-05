@@ -13,6 +13,14 @@ interface Tool {
   screenshot?: string;
 }
 
+function slugifyCategory(category: string) {
+  return category
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
 export default function CategoryClient({ categorySlug, categoryName }: { categorySlug: string; categoryName?: string | null }) {
   const [allTools, setAllTools] = useState<Tool[]>([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
@@ -34,16 +42,10 @@ export default function CategoryClient({ categorySlug, categoryName }: { categor
   useEffect(() => {
     if (allTools.length > 0) {
       const slugToFind = decodeURIComponent(categorySlug);
-      const matchedTools = allTools.filter(tool =>
-        tool.category && tool.category.toLowerCase().replace(/\s+/g, '-') === slugToFind
+      const results = allTools.filter(tool =>
+        slugifyCategory(tool.category) === slugToFind
       );
-      setFilteredTools(matchedTools);
-      if (matchedTools.length > 0) {
-        setDisplayCategory(matchedTools[0].category);
-      } else {
-        const fallback = slugToFind.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-        setDisplayCategory(fallback);
-      }
+      setFilteredTools(results);
       setLoading(false);
     }
   }, [allTools, categorySlug]);
@@ -67,8 +69,8 @@ export default function CategoryClient({ categorySlug, categoryName }: { categor
           </div>
         ) : (
           <div className="text-center text-gray-500 py-16">
-            <h3 className="text-xl font-semibold">未找到相关工具</h3>
-            <p>该分类下没有工具。</p>
+            <h3 className="text-xl font-semibold">No tools found</h3>
+            <p>No tools found in this category.</p>
           </div>
         )}
       </div>
