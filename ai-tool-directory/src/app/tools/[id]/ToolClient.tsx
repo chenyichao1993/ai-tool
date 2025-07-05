@@ -163,11 +163,25 @@ export default function ToolClient(props: { id: string; toolName?: string | null
           <div className="mt-8 md:mt-0 md:ml-8 flex-shrink-0">
             <div className="tool-social-row mb-3">
               <span className="text-sm text-gray-700 font-medium">Send to a friend:</span>
-              <div className="tool-social-icons">
-                {/* ...社交分享按钮... */}
+              <div className="tool-social-icons flex gap-2 mt-2">
+                <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=Check%20out%20this%20AI%20tool!`} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+                  <img src="/social/x.png" alt="X" className="w-8 h-8" />
+                </a>
+                <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+                  <img src="/social/facebook.png" alt="Facebook" className="w-8 h-8" />
+                </a>
+                <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+                  <img src="/social/linkedin.png" alt="LinkedIn" className="w-8 h-8" />
+                </a>
+                <a href={`https://reddit.com/submit?url=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+                  <img src="/social/reddit.png" alt="Reddit" className="w-8 h-8" />
+                </a>
+                <a href={`mailto:?subject=Check%20out%20this%20AI%20tool!&body=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition">
+                  <img src="/social/email.png" alt="Email" className="w-8 h-8" />
+                </a>
               </div>
             </div>
-            <img src={screenshot} alt={tool.name} className="rounded-lg shadow-md w-72 h-48 object-cover" />
+            <img src={screenshot} alt={tool.name} className="rounded-lg shadow-md w-full max-w-md h-auto object-cover" style={{ minWidth: 320, minHeight: 180 }} />
           </div>
         </div>
       </div>
