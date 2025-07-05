@@ -400,7 +400,7 @@ export default function ToolClient(props: { id: string; toolName?: string | null
                     </div>
                     {/* 输入框单独一行，圆角，宽度100%，背景色与评分区一致 */}
                     <textarea
-                      className="w-full rounded-lg px-2 py-2 border border-gray-300 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-[#7C5CFA] focus:border-[#7C5CFA] transition"
+                      className="w-full rounded-lg px-2 py-2 border border-gray-300 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-[#7C5CFA] focus:border-[#7C5CFA] transition tool-comment-input"
                       rows={3}
                       placeholder="Leave us your comments"
                       value={userComment}
