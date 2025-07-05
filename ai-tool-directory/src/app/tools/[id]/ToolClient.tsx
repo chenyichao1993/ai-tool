@@ -400,7 +400,7 @@ export default function ToolClient(props: { id: string; toolName?: string | null
                     </div>
                     {/* 输入框单独一行，圆角，宽度100%，背景色与评分区一致 */}
                     <textarea
-                      className="w-full max-w-[320px] mx-auto min-w-0 rounded-lg px-2 py-2 border border-gray-300 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-[#7C5CFA] focus:border-[#7C5CFA] transition mb-4 md:max-w-none md:mx-0 md:px-2 md:py-2"
+                      className="w-full rounded-lg px-2 py-2 border border-gray-300 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-[#7C5CFA] focus:border-[#7C5CFA] transition"
                       rows={3}
                       placeholder="Leave us your comments"
                       value={userComment}
@@ -411,7 +411,7 @@ export default function ToolClient(props: { id: string; toolName?: string | null
                     <div className="flex justify-center">
                       <button
                         type="submit"
-                        className="w-full max-w-[320px] mx-auto min-w-0 rounded-md shadow-sm text-sm font-medium px-2 py-2 bg-[#7C5CFA] hover:bg-[#6842e6] text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#7C5CFA] mt-2 md:max-w-none md:mx-0 md:rounded-lg md:font-semibold md:px-6 md:py-2 md:mt-4 md:max-w-xs"
+                        className="rounded-md shadow-sm text-sm font-medium px-6 py-2 mt-3 mb-4 bg-[#7C5CFA] hover:bg-[#6842e6] text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#7C5CFA]"
                       >
                         Submit My Rating
                       </button>
