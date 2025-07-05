@@ -33,6 +33,32 @@ function slugifyTag(tag: string) {
     .replace(/[^a-z0-9-]/g, '');
 }
 
+function getTagMainPart(tag: string) {
+  let main = tag.split('(')[0].trim();
+  main = main.replace(/[^a-zA-Z0-9\- ]/g, '');
+  main = main.replace(/\s+/g, ' ').trim();
+  main = main.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  return main;
+}
+
+function slugifyTagForUrl(tag: string) {
+  let main = tag.split('(')[0].trim();
+  main = main.replace(/[^a-zA-Z0-9\- ]/g, '');
+  main = main.replace(/[\s\-]+/g, '-');
+  main = main.replace(/^\-+|\-+$/g, '');
+  return main.toLowerCase();
+}
+
+function smartTagMainPart(tag: string) {
+  let main = tag.split('(')[0].trim();
+  main = main.replace(/[-/_]+/g, ' ');
+  main = main.replace(/([a-z])([A-Z])/g, '$1 $2');
+  main = main.replace(/\s+/g, ' ').trim();
+  let words = main.split(' ');
+  words = words.filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  return words.join(' ');
+}
+
 export default function TagClient({ tagSlug, tagName }: { tagSlug: string; tagName?: string | null }) {
   const [allTools, setAllTools] = useState<Tool[]>([]);
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
@@ -53,22 +79,13 @@ export default function TagClient({ tagSlug, tagName }: { tagSlug: string; tagNa
 
   useEffect(() => {
     if (allTools.length > 0) {
-      const slugToFind = decodeURIComponent(tagSlug);
+      // 用主干分词匹配，所有主干一致的tag都能被检索到
+      const mainTag = smartTagMainPart(tagSlug.replace(/-/g, ' '));
       const results = allTools.filter(tool =>
-        tool.tags?.some(t => slugifyTag(t) === slugToFind)
+        tool.tags?.some(t => smartTagMainPart(t).toLowerCase() === mainTag.toLowerCase())
       );
       setFilteredTools(results);
-      if (results.length > 0) {
-        const matchingTag = results[0].tags.find(t => slugifyTag(t) === slugToFind);
-        setDisplayTag(matchingTag || '');
-      } else {
-        const fallbackTag = slugToFind
-          .replace(/-/g, ' ')
-          .split(' ')
-          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-          .join(' ');
-        setDisplayTag(fallbackTag);
-      }
+      setDisplayTag(mainTag);
       setLoading(false);
     }
   }, [allTools, tagSlug]);
@@ -83,7 +100,7 @@ export default function TagClient({ tagSlug, tagName }: { tagSlug: string; tagNa
               <span className="text-black">Best </span>
               <span className="text-black">{filteredTools.length}</span>
               <span className="text-black"> </span>
-              <span className="text-[#7C5CFA]">{tagName || tagSlug}</span>
+              <span className="text-[#7C5CFA]">{displayTag}</span>
               <span className="text-black"> Tools</span>
             </h1>
           </div>

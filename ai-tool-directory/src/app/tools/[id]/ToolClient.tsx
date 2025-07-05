@@ -83,6 +83,35 @@ function getReviewsCount(name: string): number {
   return 8 + (Math.abs(hash) % 43); // 8~50
 }
 
+function getTagMainPart(tag: string) {
+  let main = tag.split('(')[0].trim();
+  main = main.replace(/[^a-zA-Z0-9 ]/g, '');
+  main = main.replace(/\s+/g, ' ').trim();
+  main = main.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  return main;
+}
+
+function slugifyTagForUrl(tag: string) {
+  let main = tag.split('(')[0].trim();
+  main = main.replace(/[^a-zA-Z0-9\- ]/g, '');
+  main = main.replace(/[\s\-]+/g, '-');
+  main = main.replace(/^\-+|\-+$/g, '');
+  return main.toLowerCase();
+}
+
+function smartTagMainPart(tag: string) {
+  let main = tag.split('(')[0].trim();
+  main = main.replace(/[-/_]+/g, ' ');
+  main = main.replace(/([a-z])([A-Z])/g, '$1 $2');
+  main = main.replace(/\s+/g, ' ').trim();
+  let words = main.split(' ');
+  words = words.filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
+  return words.join(' ');
+}
+function smartTagSlug(tag: string) {
+  return smartTagMainPart(tag).toLowerCase().replace(/\s+/g, '-');
+}
+
 export default function ToolClient(props: { id: string; toolName?: string | null }) {
   // 所有 useState/useEffect 必须在顶层
   const [tool, setTool] = useState<any>(null);
@@ -205,7 +234,7 @@ export default function ToolClient(props: { id: string; toolName?: string | null
             </div>
             <div className="flex flex-wrap gap-2 mt-4">
               {tool.tags && tool.tags.map((tag: string) => (
-                <Link key={tag} href={`/tags/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`} target="_blank" rel="noopener noreferrer">
+                <Link key={tag} href={`/tags/${smartTagSlug(tag)}`} target="_blank" rel="noopener noreferrer">
                   <span
                     className="px-3 py-1 rounded-full text-sm font-medium border border-gray-200 text-gray-600 bg-gray-50 hover:bg-[#7C5CFA] hover:text-white hover:border-[#7C5CFA] cursor-pointer transition-colors duration-200"
                   >
