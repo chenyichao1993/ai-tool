@@ -18,7 +18,33 @@
       "Data Extraction",
       "Content Idea Generation"
     ],
-    "screenshot": "/screenshots/chatgpt.png"
+    "screenshot": "/screenshots/chatgpt.png",
+    "whatIs": "ChatGPT is a state-of-the-art conversational AI assistant developed by OpenAI that excels in natural language understanding and generation. It can engage in meaningful conversations, answer complex questions, generate creative content, translate between languages, and assist with various writing tasks including articles, stories, and technical documentation.",
+    "keyFeatures": [
+      "Natural language conversation",
+      "Text and code generation",
+      "Multilingual translation",
+      "Text summarization and rewriting",
+      "Script and content idea generation"
+    ],
+    "useCases": [
+      "Drafting emails, articles, or stories",
+      "Getting instant answers to questions",
+      "Translating text between languages",
+      "Brainstorming content ideas",
+      "Polishing and rewriting sentences"
+    ],
+    "whoIsFor": "Anyone needing fast, high-quality text generation, translation, or conversational AI assistance.",
+    "faq": [
+      {"question": "Can ChatGPT write code?", "answer": "Yes, ChatGPT can generate, explain, and debug code in various programming languages including Python, JavaScript, Java, and more."},
+      {"question": "Is ChatGPT free to use?", "answer": "ChatGPT offers a free version with basic features, while ChatGPT Plus provides advanced capabilities and priority access for $20/month."},
+      {"question": "How accurate is ChatGPT's information?", "answer": "ChatGPT's knowledge is current up to its training cutoff date, but it may occasionally provide outdated or incorrect information, so verification is recommended for critical tasks."}
+    ],
+    "reviews": [
+      "ChatGPT saves me hours every week!",
+      "The best AI for brainstorming and writing.",
+      "Impressive language understanding and versatility."
+    ]
   },
   {
     "category": "AI Writing & Content Generation",
@@ -39,7 +65,32 @@
       "Real-time Feedback",
       "Proofreading"
     ],
-    "screenshot": "/screenshots/grammarly.png"
+    "screenshot": "/screenshots/grammarly.png",
+    "whatIs": "Grammarly is a comprehensive AI-powered writing assistant that provides real-time grammar, spelling, and style checking to enhance English writing quality. It offers intelligent suggestions for improving clarity, tone, and engagement while helping users develop better writing skills through detailed explanations and learning opportunities.",
+    "keyFeatures": [
+      "Grammar and spelling correction",
+      "Style and tone suggestions",
+      "Plagiarism detection",
+      "Vocabulary enhancement",
+      "Writing analytics and feedback"
+    ],
+    "useCases": [
+      "Proofreading essays and reports",
+      "Improving business emails",
+      "Checking for plagiarism in documents",
+      "Enhancing clarity and tone in writing"
+    ],
+    "whoIsFor": "Writers, students, professionals, and anyone seeking error-free English writing.",
+    "faq": [
+      {"question": "Does Grammarly work with Google Docs?", "answer": "Yes, Grammarly integrates seamlessly with Google Docs, Microsoft Word, Outlook, and many other writing platforms through browser extensions and desktop apps."},
+      {"question": "Is Grammarly only for English?", "answer": "Currently, Grammarly primarily supports English writing, though it can detect and provide basic suggestions for some other languages."},
+      {"question": "How accurate is Grammarly's grammar checking?", "answer": "Grammarly uses advanced AI to provide highly accurate grammar and style suggestions, but it's recommended to review suggestions as context matters in writing."}
+    ],
+    "reviews": [
+      "My writing has improved dramatically!",
+      "Essential for non-native English speakers.",
+      "Catches mistakes I always miss."
+    ]
   },
   {
     "category": "AI Writing & Content Generation",
@@ -60,7 +111,32 @@
       "Long-form Content Generation",
       "Creative Story Generation"
     ],
-    "screenshot": "/screenshots/jasper.png"
+    "screenshot": "/screenshots/jasper.png",
+    "whatIs": "Jasper is a sophisticated AI writing assistant specifically designed for marketing and business content creation. It excels at generating high-quality marketing copy, blog articles, product descriptions, and social media content by understanding brand voice and incorporating SEO best practices to drive engagement and conversions.",
+    "keyFeatures": [
+      "Marketing copy generation",
+      "SEO keyword integration",
+      "Brand voice adaptation",
+      "Long-form and short-form content creation",
+      "Social media and product description writing"
+    ],
+    "useCases": [
+      "Creating ad copy for campaigns",
+      "Writing SEO-optimized blog posts",
+      "Generating product descriptions",
+      "Brainstorming creative content ideas"
+    ],
+    "whoIsFor": "Marketers, content creators, and businesses seeking fast, high-quality copywriting.",
+    "faq": [
+      {"question": "Can Jasper write in different tones?", "answer": "Yes, Jasper can adapt to various brand voices and tones, allowing users to maintain consistent brand personality across all content types."},
+      {"question": "Does Jasper support multiple languages?", "answer": "Jasper primarily supports English content creation, with some capabilities for other languages, though English typically produces the best results."},
+      {"question": "How does Jasper handle SEO optimization?", "answer": "Jasper includes built-in SEO features that help optimize content for search engines by suggesting relevant keywords and improving content structure."}
+    ],
+    "reviews": [
+      "Jasper makes content creation effortless!",
+      "A must-have for digital marketers.",
+      "Saves me so much time on copywriting."
+    ]
   },
   {
     "category": "AI Writing & Content Generation",
@@ -81,7 +157,32 @@
       "Content Polishing",
       "Word Choice Improvement"
     ],
-    "screenshot": "/screenshots/quillbot.png"
+    "screenshot": "/screenshots/quillbot.png",
+    "whatIs": "QuillBot is an advanced AI-powered paraphrasing and text enhancement tool that helps users rewrite, summarize, and polish content for improved clarity and fluency. It offers multiple writing modes, grammar checking, and plagiarism detection to ensure high-quality, original content creation.",
+    "keyFeatures": [
+      "Paraphrasing and rewriting",
+      "Grammar and plagiarism checking",
+      "Text summarization",
+      "Vocabulary and synonym suggestions",
+      "Content polishing"
+    ],
+    "useCases": [
+      "Rewriting academic papers",
+      "Summarizing articles",
+      "Improving sentence fluency",
+      "Checking for plagiarism"
+    ],
+    "whoIsFor": "Students, writers, and professionals seeking to improve and rephrase text.",
+    "faq": [
+      {"question": "Is QuillBot free to use?", "answer": "QuillBot offers a free plan with basic paraphrasing features, while premium plans provide advanced tools including plagiarism checking and unlimited word counts."},
+      {"question": "Can QuillBot check for plagiarism?", "answer": "Yes, QuillBot includes a comprehensive plagiarism checker in its premium plans that can scan against billions of web pages and academic papers."},
+      {"question": "How many paraphrasing modes does QuillBot offer?", "answer": "QuillBot offers multiple paraphrasing modes including Standard, Fluency, Creative, Formal, Simple, and Academic to suit different writing needs."}
+    ],
+    "reviews": [
+      "Best tool for paraphrasing assignments!",
+      "Helps me write more clearly and concisely.",
+      "The synonym suggestions are spot on."
+    ]
   },
   {
     "category": "AI Writing & Content Generation",
@@ -102,7 +203,32 @@
       "Freestyle Text Generation",
       "Listicle Generation"
     ],
-    "screenshot": "/screenshots/copy.ai.png"
+    "screenshot": "/screenshots/copy.ai.png",
+    "whatIs": "Copy.ai is a specialized AI copywriting platform that excels at generating creative and compelling marketing content including advertising slogans, email campaigns, social media posts, and product descriptions. It helps businesses and marketers create persuasive copy that drives conversions and engagement.",
+    "keyFeatures": [
+      "Ad slogan and sales copy generation",
+      "Email and social media content creation",
+      "Brand voice and tone adjustment",
+      "Content brainstorming",
+      "Freestyle and listicle generation"
+    ],
+    "useCases": [
+      "Writing catchy ad slogans",
+      "Generating email marketing content",
+      "Creating social media posts",
+      "Brainstorming blog post ideas"
+    ],
+    "whoIsFor": "Marketers, entrepreneurs, and anyone needing fast, creative copywriting.",
+    "faq": [
+      {"question": "Does Copy.ai support multiple languages?", "answer": "Copy.ai primarily supports English content creation, though it can generate content in some other languages with varying quality."},
+      {"question": "Is there a free trial?", "answer": "Yes, Copy.ai offers a free trial with 2,000 words per month, allowing users to test the platform's capabilities before committing to a paid plan."},
+      {"question": "Can Copy.ai maintain brand voice consistency?", "answer": "Yes, Copy.ai allows users to set brand voice parameters and tone preferences to ensure consistent messaging across all generated content."}
+    ],
+    "reviews": [
+      "Copy.ai makes ad copywriting a breeze!",
+      "Great for quick content ideas.",
+      "Love the freestyle generation feature."
+    ]
   },
   {
     "category": "AI Writing & Content Generation",
@@ -123,7 +249,32 @@
       "File Translation (.pdf, .docx, .pptx)",
       "Image Text Translation"
     ],
-    "screenshot": "/screenshots/deepl.png"
+    "screenshot": "/screenshots/deepl.png",
+    "whatIs": "DeepL is a premium AI-powered translation service renowned for its exceptional accuracy and natural-sounding translations. It supports 31 languages and excels at preserving context, tone, and nuance while offering specialized features for formal and informal language styles.",
+    "keyFeatures": [
+      "Accurate language translation",
+      "Document and website translation",
+      "Glossary customization",
+      "API integration",
+      "Text-to-speech and file translation"
+    ],
+    "useCases": [
+      "Translating business documents",
+      "Converting websites for global audiences",
+      "Customizing translation glossaries",
+      "Translating images and PDFs"
+    ],
+    "whoIsFor": "Professionals, students, and businesses needing reliable, high-quality translation.",
+    "faq": [
+      {"question": "Does DeepL support real-time translation?", "answer": "Yes, DeepL offers real-time text translation with instant results, making it ideal for quick translations and live communication."},
+      {"question": "Can DeepL translate images?", "answer": "Yes, DeepL supports image text translation and can process various file formats including PDF, Word, and PowerPoint documents."},
+      {"question": "How does DeepL compare to other translation services?", "answer": "DeepL is often considered more accurate than competitors like Google Translate, especially for professional and technical content, due to its advanced neural network technology."}
+    ],
+    "reviews": [
+      "The most accurate translator I've used!",
+      "Great for business documents.",
+      "Fast and easy to use."
+    ]
   },
   {
     "category": "AI Writing & Content Generation",
@@ -144,7 +295,32 @@
       "AI-powered Summaries",
       "Reading Time Reduction"
     ],
-    "screenshot": "/screenshots/tldrthis.png"
+    "screenshot": "/screenshots/tldrthis.png",
+    "whatIs": "TLDR This is an intelligent AI-powered text summarization tool that automatically condenses lengthy articles, documents, and web content into concise, easy-to-read summaries. It helps users quickly extract key information and main points from large volumes of text, saving valuable reading time.",
+    "keyFeatures": [
+      "Automatic text and article summarization",
+      "Key point extraction",
+      "Custom summary length",
+      "Browser extension integration",
+      "AI-powered keyword highlighting"
+    ],
+    "useCases": [
+      "Summarizing research papers",
+      "Condensing news articles",
+      "Extracting key points from reports",
+      "Reducing reading time"
+    ],
+    "whoIsFor": "Students, researchers, and professionals needing quick text summaries.",
+    "faq": [
+      {"question": "Can TLDR This summarize web pages?", "answer": "Yes, TLDR This can summarize content directly from URLs and web pages, making it easy to get quick summaries of online articles and documents."},
+      {"question": "Is there a browser extension?", "answer": "Yes, TLDR This offers a browser extension that allows users to summarize web content with a single click while browsing."},
+      {"question": "How accurate are TLDR This summaries?", "answer": "TLDR This uses advanced AI to create accurate summaries that capture the main points and key information from the original text, though users should always verify critical information."}
+    ],
+    "reviews": [
+      "Perfect for summarizing long articles!",
+      "Saves me so much reading time.",
+      "The key point extraction is very accurate."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -165,7 +341,32 @@
       "Parameter Tuning",
       "Prompt-based Editing"
     ],
-    "screenshot": "/screenshots/midjourney.png"
+    "screenshot": "/screenshots/midjourney.png",
+    "whatIs": "Midjourney is a cutting-edge AI image generation platform that creates stunning artistic visuals from text descriptions. It excels at producing high-quality, imaginative artwork with diverse artistic styles and is particularly popular among artists, designers, and creative professionals for concept art and visual storytelling.",
+    "keyFeatures": [
+      "Text-to-image generation",
+      "Artistic style blending",
+      "Image upscaling and variation",
+      "Prompt-based editing",
+      "Aspect ratio and parameter control"
+    ],
+    "useCases": [
+      "Creating illustrations for design projects",
+      "Generating concept art",
+      "Experimenting with artistic styles",
+      "Producing unique social media visuals"
+    ],
+    "whoIsFor": "Artists, designers, and anyone seeking creative image generation from text.",
+    "faq": [
+      {"question": "Can Midjourney create photorealistic images?", "answer": "Yes, Midjourney can create both artistic and photorealistic images, though it's particularly renowned for its artistic and stylized outputs."},
+      {"question": "Is Midjourney easy to use for beginners?", "answer": "Midjourney operates through Discord, which may have a learning curve, but it offers comprehensive documentation and community support for new users."},
+      {"question": "How does Midjourney's pricing work?", "answer": "Midjourney operates on a subscription model with different tiers offering varying numbers of image generations per month, starting from basic plans to unlimited generation options."}
+    ],
+    "reviews": [
+      "The best tool for creative image generation!",
+      "Love the style blending features.",
+      "Makes concept art so much easier."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -186,7 +387,32 @@
       "Layered Image Export",
       "Digital Art Generation"
     ],
-    "screenshot": "/screenshots/dall-e2.png"
+    "screenshot": "/screenshots/dall-e2.png",
+    "whatIs": "DALL-E 2 is OpenAI's advanced AI image generation system that creates highly detailed and imaginative visuals from natural language descriptions. It excels at producing both realistic and fantastical images with exceptional attention to detail, composition, and artistic quality.",
+    "keyFeatures": [
+      "Photorealistic and artistic image generation",
+      "Inpainting and outpainting editing",
+      "Style and concept manipulation",
+      "High-resolution output",
+      "Layered digital art creation"
+    ],
+    "useCases": [
+      "Generating marketing visuals",
+      "Creating digital art",
+      "Editing and expanding images",
+      "Experimenting with creative concepts"
+    ],
+    "whoIsFor": "Designers, marketers, and creatives seeking AI-powered image generation.",
+    "faq": [
+      {"question": "Can DALL-E 2 generate high-res images?", "answer": "Yes, DALL-E 2 can generate high-resolution images up to 1024x1024 pixels, with options for different aspect ratios and detailed outputs."},
+      {"question": "Is DALL-E 2 suitable for commercial use?", "answer": "Yes, DALL-E 2 allows commercial use of generated images, though users should review OpenAI's usage policies and ensure they have appropriate licensing."},
+      {"question": "How does DALL-E 2's editing feature work?", "answer": "DALL-E 2 offers inpainting and outpainting capabilities, allowing users to edit specific parts of images or extend them beyond their original boundaries using natural language descriptions."}
+    ],
+    "reviews": [
+      "DALL-E 2 brings my ideas to life!",
+      "Amazing for both art and business.",
+      "The editing features are very powerful."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -207,7 +433,32 @@
       "Negative Prompting",
       "Open Source Model"
     ],
-    "screenshot": "/screenshots/stablediffusion.png"
+    "screenshot": "/screenshots/stablediffusion.png",
+    "whatIs": "Stable Diffusion is a powerful open-source AI image generation model that enables users to create diverse types of images from text prompts. It offers extensive customization options, supports various artistic styles, and includes advanced features like inpainting and style transfer for comprehensive image creation and editing.",
+    "keyFeatures": [
+      "Text-to-image generation",
+      "Image-to-image transformation",
+      "Inpainting and outpainting editing",
+      "Model customization (fine-tuning)",
+      "High-resolution image generation"
+    ],
+    "useCases": [
+      "Generating various types of images",
+      "Editing and transforming images",
+      "Creating unique art and designs",
+      "Experimenting with different styles"
+    ],
+    "whoIsFor": "Developers and designers seeking to create and modify images using AI.",
+    "faq": [
+      {"question": "Is Stable Diffusion free to use?", "answer": "Yes, Stable Diffusion is open-source and free to use, though some hosting platforms and interfaces may charge for their services."},
+      {"question": "Can Stable Diffusion generate images in real-time?", "answer": "Stable Diffusion generates images based on text prompts and typically takes a few seconds to minutes depending on the complexity and hardware used."},
+      {"question": "What makes Stable Diffusion different from other AI image generators?", "answer": "Stable Diffusion's open-source nature allows for extensive customization, community modifications, and local deployment, giving users more control over the generation process."}
+    ],
+    "reviews": [
+      "Stable Diffusion is a game-changer for image generation!",
+      "Makes creating unique visuals so much easier.",
+      "The editing features are incredibly powerful."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -228,7 +479,32 @@
       "Visual Content Creation",
       "Print-ready exports"
     ],
-    "screenshot": "/screenshots/canva.png"
+    "screenshot": "/screenshots/canva.png",
+    "whatIs": "Canva is a comprehensive online design platform that democratizes graphic design by providing thousands of professional templates, intuitive drag-and-drop tools, and extensive design elements. It enables users of all skill levels to create stunning visuals for social media, marketing materials, presentations, and more.",
+    "keyFeatures": [
+      "Template-based design",
+      "Drag-and-drop editing",
+      "Photo and video editing",
+      "Brand kit management",
+      "Team collaboration"
+    ],
+    "useCases": [
+      "Creating posters and presentations",
+      "Designing social media posts",
+      "Developing brand assets",
+      "Making print-ready designs"
+    ],
+    "whoIsFor": "Anyone needing professional design tools without design experience.",
+    "faq": [
+      {"question": "Is Canva free?", "answer": "Yes, Canva offers a generous free tier with thousands of templates and basic features, while Canva Pro provides advanced tools and premium elements."},
+      {"question": "Can I collaborate with others on designs?", "answer": "Yes, Canva supports real-time team collaboration, allowing multiple users to work on designs simultaneously with commenting and sharing features."},
+      {"question": "What file formats can I export from Canva?", "answer": "Canva supports various export formats including PNG, JPG, PDF, MP4, and GIF, with options for different resolutions and quality settings."}
+    ],
+    "reviews": [
+      "Canva is my go-to for quick and professional designs!",
+      "Great for beginners and professionals alike.",
+      "Makes design work so much easier."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -249,7 +525,32 @@
       "Creative Software Integration",
       "Professional Design Workflow"
     ],
-    "screenshot": "/screenshots/adobefirefly.png"
+    "screenshot": "/screenshots/adobefirefly.png",
+    "whatIs": "Adobe Firefly is Adobe's AI-powered creative tool that generates high-quality vector graphics, images, and design assets. It seamlessly integrates with Adobe's creative suite, allowing designers to enhance their workflows with AI-generated content while maintaining professional design standards.",
+    "keyFeatures": [
+      "Text-to-image generation",
+      "Vector graphics generation",
+      "Image generation",
+      "Adobe integration",
+      "Creative workflow integration"
+    ],
+    "useCases": [
+      "Generating design assets for Adobe software",
+      "Creating unique visual content",
+      "Integrating with Adobe's creative tools",
+      "Enhancing creative workflows"
+    ],
+    "whoIsFor": "Designers and creatives using Adobe's creative suite, seeking AI-powered design assistance.",
+    "faq": [
+      {"question": "Is Firefly part of Adobe Creative Cloud?", "answer": "Adobe Firefly is available as part of Adobe Creative Cloud subscriptions, though some features may be available separately."},
+      {"question": "Can Firefly generate images in real-time?", "answer": "Firefly generates images based on text prompts and typically takes a few seconds to process, depending on the complexity of the request."},
+      {"question": "How does Firefly integrate with Adobe software?", "answer": "Firefly integrates directly with Adobe applications like Photoshop, Illustrator, and Express, allowing users to generate and edit AI content within their existing workflows."}
+    ],
+    "reviews": [
+      "Firefly is a game-changer for Adobe users!",
+      "Makes design work so much faster.",
+      "The integration with Adobe software is seamless."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -270,7 +571,32 @@
       "One-click Editing",
       "E-commerce Image Preparation"
     ],
-    "screenshot": "/screenshots/remove.bg.png"
+    "screenshot": "/screenshots/remove.bg.png",
+    "whatIs": "Remove.bg is a specialized AI-powered background removal tool that automatically detects and removes image backgrounds with high precision. It's particularly popular for e-commerce product photography, graphic design, and creating transparent backgrounds for various creative projects.",
+    "keyFeatures": [
+      "Automatic background removal",
+      "Transparent background creation",
+      "Bulk image processing",
+      "API integration",
+      "High-resolution output"
+    ],
+    "useCases": [
+      "Preparing images for e-commerce",
+      "Creating transparent backgrounds for designs",
+      "Processing multiple images",
+      "Automating background removal tasks"
+    ],
+    "whoIsFor": "Designers, marketers, and anyone needing to create transparent backgrounds for images.",
+    "faq": [
+      {"question": "Is Remove.bg free?", "answer": "Remove.bg offers a free tier with limited downloads per month, while premium plans provide unlimited downloads and higher resolution outputs."},
+      {"question": "Can I use Remove.bg on any image?", "answer": "Remove.bg works with most image formats including JPG, PNG, and WebP, and can process images up to 12.5 megapixels in the free version."},
+      {"question": "How accurate is Remove.bg's background removal?", "answer": "Remove.bg uses advanced AI to achieve highly accurate background removal, especially for objects with clear edges, though complex backgrounds may require manual touch-ups."}
+    ],
+    "reviews": [
+      "Remove.bg is a lifesaver for designers!",
+      "Makes background removal so quick and easy.",
+      "High-quality output every time."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -291,7 +617,32 @@
       "Professional Branding Tools",
       "Custom Logo Design"
     ],
-    "screenshot": "/screenshots/looka.png"
+    "screenshot": "/screenshots/looka.png",
+    "whatIs": "Looka is an AI-powered brand design platform that creates comprehensive brand identities including logos, color schemes, and visual elements. It analyzes industry trends and brand preferences to generate professional branding materials suitable for businesses of all sizes.",
+    "keyFeatures": [
+      "Logo generation",
+      "Color scheme generation",
+      "Brand identity design",
+      "Logo customization",
+      "Industry-based design"
+    ],
+    "useCases": [
+      "Creating brand logos and color schemes",
+      "Developing visual identities",
+      "Designing custom logos",
+      "Creating brand guidelines"
+    ],
+    "whoIsFor": "Marketers, designers, and businesses seeking AI-powered brand design assistance.",
+    "faq": [
+      {"question": "Is Looka free?", "answer": "Looka offers a free trial that allows users to explore logo designs, but downloading high-resolution files and accessing all features requires a paid subscription."},
+      {"question": "Can Looka generate multiple logo variations?", "answer": "Yes, Looka generates multiple logo variations based on your brand information, allowing you to choose from different styles and concepts."},
+      {"question": "What file formats does Looka provide?", "answer": "Looka provides logos in various formats including PNG, JPG, SVG, and PDF, suitable for both digital and print applications."}
+    ],
+    "reviews": [
+      "Looka makes brand design so much easier!",
+      "Great for creating professional brand assets.",
+      "Makes designing a brand so much faster."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -312,7 +663,32 @@
       "Creative Design Tools",
       "Image Customization"
     ],
-    "screenshot": "/screenshots/recraft.png"
+    "screenshot": "/screenshots/recraft.png",
+    "whatIs": "Recraft is a versatile AI-powered image editing and generation platform that combines traditional image editing capabilities with advanced AI generation features. It allows users to enhance existing images, create new visuals from text prompts, and apply various artistic styles and effects.",
+    "keyFeatures": [
+      "Image editing and optimization",
+      "Image generation",
+      "Text-to-image creation",
+      "Photo enhancement",
+      "Creative image modification"
+    ],
+    "useCases": [
+      "Enhancing existing images",
+      "Generating new images",
+      "Improving image quality",
+      "Creative design modifications"
+    ],
+    "whoIsFor": "Designers, marketers, and anyone needing AI-powered image editing and generation.",
+    "faq": [
+      {"question": "Is Recraft free?", "answer": "Recraft offers a free tier with basic features, while premium plans provide advanced editing tools and higher generation limits."},
+      {"question": "Can Recraft generate images in real-time?", "answer": "Recraft generates images based on text prompts and typically takes a few seconds to process, depending on the complexity of the request."},
+      {"question": "What image formats does Recraft support?", "answer": "Recraft supports various image formats including JPG, PNG, and WebP for both input and output, with options for different resolutions and quality settings."}
+    ],
+    "reviews": [
+      "Recraft is my go-to for image editing and generation!",
+      "Makes creating unique visuals so much easier.",
+      "The editing features are incredibly powerful."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -333,7 +709,32 @@
       "Visual Improvement",
       "Professional Image Processing"
     ],
-    "screenshot": "/screenshots/topazlabs.png"
+    "screenshot": "/screenshots/topazlabs.png",
+    "whatIs": "Topaz Labs offers a comprehensive suite of AI-powered image enhancement tools designed for photographers and digital artists. Their software specializes in advanced noise reduction, image upscaling, sharpening, and detail enhancement to transform ordinary photos into professional-quality images.",
+    "keyFeatures": [
+      "Image enhancement",
+      "Photo upscaling",
+      "Noise reduction",
+      "Image sharpening",
+      "Detail enhancement"
+    ],
+    "useCases": [
+      "Enhancing image quality",
+      "Reducing noise",
+      "Sharpening images",
+      "Improving detail"
+    ],
+    "whoIsFor": "Photographers, designers, and anyone needing to enhance image quality.",
+    "faq": [
+      {"question": "Is Topaz Labs free?", "answer": "No, Topaz Labs operates on a subscription-based model with individual software licenses available for purchase."},
+      {"question": "Can Topaz Labs work on any image?", "answer": "Topaz Labs software supports most common image formats including RAW files, JPEG, TIFF, and PNG, with various resolution capabilities."},
+      {"question": "What makes Topaz Labs different from other image editors?", "answer": "Topaz Labs specializes in AI-powered image enhancement with advanced algorithms for noise reduction, upscaling, and detail recovery that often outperform traditional editing methods."}
+    ],
+    "reviews": [
+      "Topaz Labs is a must-have for image enhancement!",
+      "Makes images look so much better.",
+      "High-quality results every time."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -354,7 +755,32 @@
       "Image Customization",
       "Artistic Rendering"
     ],
-    "screenshot": "/screenshots/playgroundai.png"
+    "screenshot": "/screenshots/playgroundai.png",
+    "whatIs": "Playground AI is a creative AI image generation platform that enables users to create diverse artistic visuals from text descriptions. It offers a wide range of artistic styles, effects, and customization options, making it ideal for artists, designers, and creative professionals seeking inspiration and unique visual content.",
+    "keyFeatures": [
+      "Text-to-image generation",
+      "Creative image creation",
+      "Artistic style application",
+      "Image effect generation",
+      "Visual inspiration creation"
+    ],
+    "useCases": [
+      "Generating creative images",
+      "Experimenting with artistic styles",
+      "Creating unique visuals",
+      "Inspiring creative workers"
+    ],
+    "whoIsFor": "Artists, designers, and anyone seeking AI-powered image generation inspiration.",
+    "faq": [
+      {"question": "Is Playground AI free?", "answer": "Playground AI offers a free tier with limited generations, while premium plans provide more features and higher generation limits."},
+      {"question": "Can Playground AI generate images in real-time?", "answer": "Playground AI generates images based on text prompts and typically takes a few seconds to process, depending on the complexity and style selected."},
+      {"question": "What artistic styles does Playground AI support?", "answer": "Playground AI supports numerous artistic styles including photorealistic, artistic, cartoon, anime, and various historical art movements, allowing for diverse creative expression."}
+    ],
+    "reviews": [
+      "Playground AI is a fantastic source of inspiration!",
+      "Makes creating unique visuals so much easier.",
+      "The artistic style application is amazing."
+    ]
   },
   {
     "category": "Image Generation & Design",
@@ -375,7 +801,31 @@
       "Creative Asset Creation",
       "Artistic Rendering"
     ],
-    "screenshot": "/screenshots/leonardo.ai.png"
+    "screenshot": "/screenshots/leonardo.ai.png",
+    "whatIs": "An AI image generation platform that generates images with artistic sense and unique styles based on text descriptions.",
+    "keyFeatures": [
+      "Text-to-image generation",
+      "Artistic image creation",
+      "Unique style generation",
+      "Art creation",
+      "Design material generation"
+    ],
+    "useCases": [
+      "Creating artistic images",
+      "Generating unique styles",
+      "Art creation",
+      "Design material generation"
+    ],
+    "whoIsFor": "Artists, designers, and anyone seeking AI-powered image generation with artistic flair.",
+    "faq": [
+      {"question": "Is Leonardo.ai free?", "answer": "Yes, Leonardo.ai offers a free tier."},
+      {"question": "Can Leonardo.ai generate images in real-time?", "answer": "No, it's a model that generates images based on text prompts."}
+    ],
+    "reviews": [
+      "Leonardo.ai is a fantastic tool for artistic image generation!",
+      "Makes creating unique visuals so much easier.",
+      "The artistic rendering is incredibly impressive."
+    ]
   },
   {
     "category": "Video Production & Editing",
@@ -396,7 +846,31 @@
       "Media Creation",
       "Video Processing"
     ],
-    "screenshot": "/screenshots/runwayml.png"
+    "screenshot": "/screenshots/runwayml.png",
+    "whatIs": "A series of machine learning-based video processing tools for transforming video styles and generating content, offering an innovative video production experience.",
+    "keyFeatures": [
+      "Video style transformation",
+      "Video content generation",
+      "Machine learning video processing",
+      "Video effects application",
+      "Creative video production"
+    ],
+    "useCases": [
+      "Transforming video styles",
+      "Generating video content",
+      "Applying video effects",
+      "Creative video production"
+    ],
+    "whoIsFor": "Video creators seeking innovative video production experiences.",
+    "faq": [
+      {"question": "Is Runway ML free?", "answer": "No, Runway ML offers a subscription-based model."},
+      {"question": "Can Runway ML generate videos in real-time?", "answer": "No, it's a model that generates videos based on text prompts."}
+    ],
+    "reviews": [
+      "Runway ML is a game-changer for video production!",
+      "Makes creating unique videos so much easier.",
+      "The video effects application is incredibly powerful."
+    ]
   },
   {
     "category": "Video Production & Editing",
@@ -417,7 +891,31 @@
       "Video Narration",
       "Presentation Video Creation"
     ],
-    "screenshot": "/screenshots/synthesia.png"
+    "screenshot": "/screenshots/synthesia.png",
+    "whatIs": "An AI-powered video generation tool that creates realistic character-narrated videos based on text content, with customizable virtual characters and languages.",
+    "keyFeatures": [
+      "Character video generation",
+      "Text-to-video creation",
+      "Virtual character narration",
+      "Multi-language video generation",
+      "Professional video production"
+    ],
+    "useCases": [
+      "Creating character-narrated videos",
+      "Producing professional video content",
+      "Customizing virtual characters",
+      "Generating multi-language videos"
+    ],
+    "whoIsFor": "Anyone needing fast, professional video content generation.",
+    "faq": [
+      {"question": "Is Synthesia free?", "answer": "Yes, Synthesia offers a free tier."},
+      {"question": "Can Synthesia generate videos in real-time?", "answer": "No, it's a model that generates videos based on text prompts."}
+    ],
+    "reviews": [
+      "Synthesia is a fantastic tool for video generation!",
+      "Makes creating professional videos so much easier.",
+      "The character narration is incredibly realistic."
+    ]
   },
   {
     "category": "Video Production & Editing",
@@ -438,7 +936,31 @@
       "Clip Creation",
       "Content Repurposing"
     ],
-    "screenshot": "/screenshots/descript.png"
+    "screenshot": "/screenshots/descript.png",
+    "whatIs": "A powerful video and audio editing tool that supports automatic transcription, facilitating the editing and modification of video content, and offering a wealth of video editing special effects.",
+    "keyFeatures": [
+      "Video editing",
+      "Audio editing",
+      "Automatic transcription",
+      "Content modification",
+      "Special effects application"
+    ],
+    "useCases": [
+      "Editing and modifying video content",
+      "Podcast editing",
+      "Screen recording",
+      "Media production"
+    ],
+    "whoIsFor": "Anyone needing powerful video and audio editing capabilities.",
+    "faq": [
+      {"question": "Is Descript free?", "answer": "Yes, Descript offers a free tier."},
+      {"question": "Can Descript generate text-to-speech?", "answer": "Yes, it supports text-to-speech generation."}
+    ],
+    "reviews": [
+      "Descript is a must-have for video editing!",
+      "Makes editing and modifying so much easier.",
+      "The automatic transcription is incredibly useful."
+    ]
   },
   {
     "category": "Video Production & Editing",
@@ -459,7 +981,31 @@
       "Character-based Video Creation",
       "Video Content Generation"
     ],
-    "screenshot": "/screenshots/heygen.png"
+    "screenshot": "/screenshots/heygen.png",
+    "whatIs": "An AI-powered video generation tool that creates lifelike videos by inputting text, selecting characters, and other operations, suitable for scenarios such as education and training.",
+    "keyFeatures": [
+      "AI video generation",
+      "Lifelike video creation",
+      "Text-to-video conversion",
+      "Character selection",
+      "High-quality video production"
+    ],
+    "useCases": [
+      "Creating lifelike videos for education",
+      "Generating training videos",
+      "Customizing characters",
+      "Producing professional videos"
+    ],
+    "whoIsFor": "Anyone needing fast, high-quality AI video generation.",
+    "faq": [
+      {"question": "Is HeyGen free?", "answer": "Yes, HeyGen offers a free tier."},
+      {"question": "Can HeyGen generate videos in real-time?", "answer": "No, it's a model that generates videos based on text prompts."}
+    ],
+    "reviews": [
+      "HeyGen is a fantastic tool for AI video generation!",
+      "Makes creating lifelike videos so much easier.",
+      "The character selection is incredibly powerful."
+    ]
   },
   {
     "category": "Video Production & Editing",
@@ -480,7 +1026,32 @@
       "Voice Customization",
       "Video Generation"
     ],
-    "screenshot": "/screenshots/fliki.png"
+    "screenshot": "/screenshots/fliki.png",
+    "whatIs": "Fliki is an AI-powered video creation platform that transforms text into engaging video content with professional voice-overs. It combines text-to-speech technology with video templates and materials to create complete videos suitable for marketing, education, and social media content.",
+    "keyFeatures": [
+      "Text-to-video conversion",
+      "Voice-over generation",
+      "Video material integration",
+      "Voice style selection",
+      "Video template usage"
+    ],
+    "useCases": [
+      "Converting text to voice-over",
+      "Generating complete videos",
+      "Applying voice styles",
+      "Creating quick videos"
+    ],
+    "whoIsFor": "Anyone needing fast, high-quality video production from text.",
+    "faq": [
+      {"question": "Is Fliki free?", "answer": "Fliki offers a free tier with limited features, while premium plans provide more video generation credits and advanced voice options."},
+      {"question": "Can Fliki generate videos in real-time?", "answer": "Fliki generates videos based on text input and typically takes a few minutes to process, depending on the video length and complexity."},
+      {"question": "What voice options does Fliki provide?", "answer": "Fliki offers multiple voice styles and languages, allowing users to choose from various accents, tones, and speaking styles for their video content."}
+    ],
+    "reviews": [
+      "Fliki is a fantastic tool for video production!",
+      "Makes creating videos so much easier.",
+      "The voice-over generation is incredibly useful."
+    ]
   },
   {
     "category": "Video Production & Editing",
@@ -501,7 +1072,32 @@
       "Video Production Platform",
       "Video Creation"
     ],
-    "screenshot": "/screenshots/invideo.png"
+    "screenshot": "/screenshots/invideo.png",
+    "whatIs": "InVideo is a comprehensive online video creation platform that provides thousands of professional templates and powerful editing tools. It enables users to create high-quality videos for marketing, social media, presentations, and business communications without requiring technical video editing skills.",
+    "keyFeatures": [
+      "Online video production",
+      "Video template usage",
+      "Video editing functions",
+      "Multi-style video creation",
+      "Template-based video production"
+    ],
+    "useCases": [
+      "Creating videos of various styles",
+      "Applying video styles",
+      "Customizing video templates",
+      "Creating videos"
+    ],
+    "whoIsFor": "Anyone needing an online video production platform with rich video editing functions.",
+    "faq": [
+      {"question": "Is InVideo free?", "answer": "InVideo offers a free plan with limited exports and watermarks, while premium plans provide unlimited exports, no watermarks, and access to premium templates."},
+      {"question": "Can InVideo generate videos in real-time?", "answer": "InVideo allows users to create videos using templates and editing tools, with rendering times varying based on video length and complexity."},
+      {"question": "What video formats does InVideo support?", "answer": "InVideo supports various video formats and aspect ratios, including landscape, portrait, and square formats suitable for different social media platforms."}
+    ],
+    "reviews": [
+      "InVideo is a fantastic video production platform!",
+      "Makes creating videos so much easier.",
+      "The video editing functions are incredibly powerful."
+    ]
   },
   {
     "category": "Audio Processing & Generation",
@@ -522,7 +1118,32 @@
       "Audio Production",
       "Voice Generation"
     ],
-    "screenshot": "/screenshots/elevenlabs.png"
+    "screenshot": "/screenshots/elevenlabs.png",
+    "whatIs": "ElevenLabs is a cutting-edge text-to-speech platform that creates incredibly realistic and natural-sounding voice synthesis. It offers a wide variety of voice styles and languages, making it ideal for creating audiobooks, voice assistants, podcasts, and other audio content that requires human-like speech quality.",
+    "keyFeatures": [
+      "Text-to-speech generation",
+      "Realistic voice creation",
+      "Voice style selection",
+      "Natural speech generation",
+      "Smooth speech conversion"
+    ],
+    "useCases": [
+      "Converting text to speech for audiobooks",
+      "Creating voice assistants",
+      "Generating realistic speech",
+      "Voice customization"
+    ],
+    "whoIsFor": "Anyone needing realistic voice generation for various applications.",
+    "faq": [
+      {"question": "Is ElevenLabs free?", "answer": "ElevenLabs offers a free tier with limited characters per month, while premium plans provide more characters and access to advanced voice cloning features."},
+      {"question": "Can ElevenLabs generate speech in real-time?", "answer": "ElevenLabs generates speech based on text input and typically takes a few seconds to process, depending on the length and complexity of the text."},
+      {"question": "What makes ElevenLabs different from other TTS services?", "answer": "ElevenLabs is known for its exceptionally natural-sounding voices with emotional expression and the ability to clone existing voices with just a few minutes of audio sample."}
+    ],
+    "reviews": [
+      "ElevenLabs is a fantastic tool for voice generation!",
+      "Makes creating realistic speech so much easier.",
+      "The voice style selection is incredibly powerful."
+    ]
   },
   {
     "category": "Audio Processing & Generation",
@@ -543,7 +1164,32 @@
       "Language Processing",
       "Transcription Services"
     ],
-    "screenshot": "/screenshots/whisper.png"
+    "screenshot": "/screenshots/whisper.png",
+    "whatIs": "Whisper is OpenAI's state-of-the-art speech recognition system that provides highly accurate transcription of speech to text across multiple languages. It excels at handling various accents, background noise, and technical terminology, making it ideal for transcription services, accessibility tools, and automated note-taking applications.",
+    "keyFeatures": [
+      "Speech recognition",
+      "Multi-language speech processing",
+      "Speech-to-text conversion",
+      "Speech transcription",
+      "Language recognition"
+    ],
+    "useCases": [
+      "Speech transcription",
+      "Language recognition",
+      "Audio content analysis",
+      "Speech content recognition"
+    ],
+    "whoIsFor": "Anyone needing accurate speech recognition and transcription.",
+    "faq": [
+      {"question": "Is Whisper free?", "answer": "Yes, Whisper is open-source and free to use, though some hosting platforms and API services may charge for their implementation."},
+      {"question": "Can Whisper recognize speech in real-time?", "answer": "Whisper processes audio files and can provide near real-time transcription depending on the implementation and hardware used."},
+      {"question": "How accurate is Whisper compared to other speech recognition tools?", "answer": "Whisper is considered one of the most accurate speech recognition models available, particularly excelling at handling various accents, languages, and challenging audio conditions."}
+    ],
+    "reviews": [
+      "Whisper is a fantastic tool for speech recognition!",
+      "Makes transcribing speech so much easier.",
+      "High-accuracy results every time."
+    ]
   },
   {
     "category": "Audio Processing & Generation",
@@ -564,7 +1210,32 @@
       "Audio Voice Creation",
       "Voice Synthesis"
     ],
-    "screenshot": "/screenshots/resembleai.png"
+    "screenshot": "/screenshots/resembleai.png",
+    "whatIs": "Resemble AI is a specialized voice cloning and personalization platform that enables users to create custom voice models for specific applications. It's particularly popular for creating brand voices, game character voices, and personalized audio content with high-quality, natural-sounding results.",
+    "keyFeatures": [
+      "Personalized voice creation",
+      "Voice style customization",
+      "Brand voice generation",
+      "Game voice creation",
+      "Voice cloning"
+    ],
+    "useCases": [
+      "Creating personalized voiceovers",
+      "Customizing brand voices",
+      "Generating game voices",
+      "Voice cloning"
+    ],
+    "whoIsFor": "Anyone needing personalized voice generation for various applications.",
+    "faq": [
+      {"question": "Is Resemble AI free?", "answer": "No, Resemble AI operates on a subscription-based model with different tiers offering various voice cloning and generation capabilities."},
+      {"question": "Can Resemble AI work on any voice?", "answer": "Resemble AI can clone various voice styles and supports multiple languages, though the quality depends on the quality and quantity of the training audio provided."},
+      {"question": "How much training data is needed for voice cloning?", "answer": "Resemble AI typically requires 3-10 minutes of high-quality audio to create an effective voice clone, with more data generally resulting in better quality."}
+    ],
+    "reviews": [
+      "Resemble AI is a fantastic tool for voice generation!",
+      "Makes creating personalized voices so much easier.",
+      "The voice style customization is incredibly powerful."
+    ]
   },
   {
     "category": "Audio Processing & Generation",
@@ -585,7 +1256,31 @@
       "Audio Quality Enhancement",
       "Sound Processing"
     ],
-    "screenshot": "/screenshots/cleanvoiceai.png"
+    "screenshot": "/screenshots/cleanvoiceai.png",
+    "whatIs": "Cleanvoice AI is a specialized audio processing tool that uses advanced AI algorithms to remove background noise, eliminate unwanted sounds, and enhance audio quality. It's particularly useful for podcasters, content creators, and professionals who need clean, professional-quality audio recordings.",
+    "keyFeatures": [
+      "Audio cleaning",
+      "Audio enhancement",
+      "Background noise removal",
+      "Audio quality improvement",
+      "Audio clarity enhancement"
+    ],
+    "useCases": [
+      "Cleaning audio for podcasts",
+      "Enhancing audio quality",
+      "Reducing background noise",
+      "Improving audio clarity"
+    ],
+    "whoIsFor": "Anyone needing audio cleaning and enhancement.",
+    "faq": [
+      {"question": "Is Cleanvoice AI free?", "answer": "No, Cleanvoice AI offers a subscription-based model."},
+      {"question": "Can Cleanvoice AI work on any audio?", "answer": "Yes, it can be used on various audio formats and resolutions."}
+    ],
+    "reviews": [
+      "Cleanvoice AI is a fantastic tool for audio enhancement!",
+      "Makes audio so much clearer.",
+      "High-quality results every time."
+    ]
   },
   {
     "category": "Audio Processing & Generation",
@@ -606,7 +1301,31 @@
       "Audio Generation",
       "Music Production"
     ],
-    "screenshot": "/screenshots/riffusion.png"
+    "screenshot": "/screenshots/riffusion.png",
+    "whatIs": "An AI tool that generates music by inputting text descriptions, converting text information into unique musical works and providing a new way for music creation.",
+    "keyFeatures": [
+      "Text-to-music generation",
+      "Music creation from text",
+      "Unique musical work generation",
+      "Text-based music creation",
+      "Music generation"
+    ],
+    "useCases": [
+      "Generating music from text",
+      "Creating unique musical works",
+      "Text-based music creation",
+      "Music generation"
+    ],
+    "whoIsFor": "Anyone needing AI-powered music generation.",
+    "faq": [
+      {"question": "Is Riffusion free?", "answer": "No, Riffusion offers a subscription-based model."},
+      {"question": "Can Riffusion generate music in real-time?", "answer": "No, it's a model that generates music based on text prompts."}
+    ],
+    "reviews": [
+      "Riffusion is a fantastic tool for music generation!",
+      "Makes creating unique music so much easier.",
+      "The text-based music creation is incredibly powerful."
+    ]
   },
   {
     "category": "Audio Processing & Generation",
@@ -627,7 +1346,31 @@
       "Music Creation",
       "Sound Generation"
     ],
-    "screenshot": "/screenshots/soundraw.png"
+    "screenshot": "/screenshots/soundraw.png",
+    "whatIs": "An AI tool that generates original background music according to users' selections such as music type and mood, suitable for scenarios such as videos and games.",
+    "keyFeatures": [
+      "Background music generation",
+      "Original music creation",
+      "Music type selection",
+      "Mood-based music generation",
+      "Music customization"
+    ],
+    "useCases": [
+      "Generating background music for videos",
+      "Creating original music",
+      "Selecting music types",
+      "Generating mood-based music"
+    ],
+    "whoIsFor": "Anyone needing AI-powered background music generation.",
+    "faq": [
+      {"question": "Is Soundraw free?", "answer": "Yes, Soundraw offers a free tier."},
+      {"question": "Can Soundraw generate music in real-time?", "answer": "No, it's a model that generates music based on text prompts."}
+    ],
+    "reviews": [
+      "Soundraw is a fantastic tool for background music generation!",
+      "Makes creating unique music so much easier.",
+      "The music type selection is incredibly powerful."
+    ]
   },
   {
     "category": "Audio Processing & Generation",
@@ -648,7 +1391,31 @@
       "Audio Modification",
       "Voice Processing"
     ],
-    "screenshot": "/screenshots/voicemod.png"
+    "screenshot": "/screenshots/voicemod.png",
+    "whatIs": "A voice-changing tool that allows users to change their voice effects in real-time and add various interesting sound effects, often used in game voice chat and other scenarios.",
+    "keyFeatures": [
+      "Voice changing",
+      "Real-time voice effects",
+      "Sound effect addition",
+      "Voice modification",
+      "Audio effect application"
+    ],
+    "useCases": [
+      "Changing voice effects in real-time",
+      "Adding sound effects",
+      "Voice modification",
+      "Audio effect application"
+    ],
+    "whoIsFor": "Anyone needing voice modification and sound effect applications.",
+    "faq": [
+      {"question": "Is Voicemod free?", "answer": "Yes, Voicemod offers a free tier."},
+      {"question": "Can Voicemod work on any voice?", "answer": "Yes, it can be used on various voice styles and languages."}
+    ],
+    "reviews": [
+      "Voicemod is a fantastic tool for voice modification!",
+      "Makes changing voice effects so much easier.",
+      "The real-time audio processing is incredibly powerful."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -669,7 +1436,31 @@
       "Workflow Optimization",
       "Content Management"
     ],
-    "screenshot": "/screenshots/notionai.png"
+    "screenshot": "/screenshots/notionai.png",
+    "whatIs": "An AI assistant integrated into the Notion office platform, assisting users in text generation, content summarization, task planning, and improving office efficiency and document creation quality.",
+    "keyFeatures": [
+      "Text generation",
+      "Content summarization",
+      "Task planning",
+      "Office efficiency improvement",
+      "Document creation enhancement"
+    ],
+    "useCases": [
+      "Generating text for Notion documents",
+      "Summarizing content",
+      "Planning tasks",
+      "Enhancing document creation"
+    ],
+    "whoIsFor": "Anyone using the Notion office platform, seeking AI-powered productivity assistance.",
+    "faq": [
+      {"question": "Is Notion AI free?", "answer": "Yes, Notion AI is free to use within the Notion platform."},
+      {"question": "Can Notion AI generate text in real-time?", "answer": "No, it's a model that generates text based on prompts."}
+    ],
+    "reviews": [
+      "Notion AI is a fantastic productivity assistant!",
+      "Makes creating text for Notion so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -690,7 +1481,31 @@
       "Content Creation",
       "Intelligent Assistance"
     ],
-    "screenshot": "/screenshots/claude.png"
+    "screenshot": "/screenshots/claude.png",
+    "whatIs": "An intelligent conversational assistant that can be used for text processing, question-answering, creative inspiration, etc. in various office scenarios to help users better complete work tasks.",
+    "keyFeatures": [
+      "Text processing",
+      "Question answering",
+      "Creative inspiration generation",
+      "Conversational assistance",
+      "Work task completion"
+    ],
+    "useCases": [
+      "Processing text for office tasks",
+      "Answering questions",
+      "Providing creative inspiration",
+      "Assisting with work tasks"
+    ],
+    "whoIsFor": "Anyone in various office scenarios, seeking intelligent conversational assistance.",
+    "faq": [
+      {"question": "Is Claude free?", "answer": "Yes, Claude offers a free tier."},
+      {"question": "Can Claude generate text in real-time?", "answer": "No, it's a model that generates text based on prompts."}
+    ],
+    "reviews": [
+      "Claude is a fantastic intelligent assistant!",
+      "Makes processing text for office tasks so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -711,7 +1526,32 @@
       "Meeting Documentation",
       "Audio Processing"
     ],
-    "screenshot": "/screenshots/fireflies.ai.png"
+    "screenshot": "/screenshots/fireflies.ai.png",
+    "whatIs": "Fireflies.ai is an intelligent meeting assistant that automatically records, transcribes, and organizes meeting content. It captures audio from various meeting platforms, converts speech to text with high accuracy, and provides searchable meeting notes with action items and key insights.",
+    "keyFeatures": [
+      "Meeting recording",
+      "Speech transcription",
+      "Automatic content recording",
+      "Speech-to-text conversion",
+      "Meeting minutes organization"
+    ],
+    "useCases": [
+      "Recording and transcribing meetings",
+      "Organizing meeting minutes",
+      "Managing meeting content",
+      "Audio processing"
+    ],
+    "whoIsFor": "Anyone needing AI-powered meeting recording and transcription.",
+    "faq": [
+      {"question": "Is Fireflies.ai free?", "answer": "Fireflies.ai offers a free plan with limited recording hours, while premium plans provide unlimited recording and advanced features like AI insights and integrations."},
+      {"question": "Can Fireflies.ai generate text in real-time?", "answer": "Fireflies.ai provides real-time transcription during meetings and generates comprehensive meeting notes shortly after the meeting concludes."},
+      {"question": "What meeting platforms does Fireflies.ai support?", "answer": "Fireflies.ai integrates with popular meeting platforms including Zoom, Google Meet, Microsoft Teams, and many others for seamless recording and transcription."}
+    ],
+    "reviews": [
+      "Fireflies.ai is a fantastic tool for meeting recording and transcription!",
+      "Makes recording and transcribing meetings so much easier.",
+      "High-quality transcription every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -732,7 +1572,32 @@
       "Presentation Creation",
       "Visual Design"
     ],
-    "screenshot": "/screenshots/beautiful.ai.png"
+    "screenshot": "/screenshots/beautiful.ai.png",
+    "whatIs": "Beautiful.ai is an intelligent presentation platform that uses AI to automatically design and format professional presentations. It offers smart templates that adapt to content, ensuring consistent design quality while allowing users to focus on their message rather than design details.",
+    "keyFeatures": [
+      "Presentation production",
+      "Intelligent design generation",
+      "Automatic presentation creation",
+      "Professional presentation generation",
+      "Content-based design"
+    ],
+    "useCases": [
+      "Creating beautiful presentations",
+      "Generating professional presentations",
+      "Customizing presentations",
+      "Design automation"
+    ],
+    "whoIsFor": "Anyone needing AI-powered presentation production.",
+    "faq": [
+      {"question": "Is Beautiful.ai free?", "answer": "Beautiful.ai offers a free plan with limited templates and features, while premium plans provide access to all templates and advanced design capabilities."},
+      {"question": "Can Beautiful.ai generate text in real-time?", "answer": "Beautiful.ai focuses on presentation design and formatting rather than text generation, though it can suggest content improvements."},
+      {"question": "How does Beautiful.ai's smart design work?", "answer": "Beautiful.ai uses AI to automatically adjust layouts, colors, and formatting as you add content, ensuring professional design consistency throughout your presentation."}
+    ],
+    "reviews": [
+      "Beautiful.ai is a fantastic presentation production tool!",
+      "Makes creating beautiful presentations so much easier.",
+      "High-quality presentation generation every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -753,7 +1618,32 @@
       "Formula Help",
       "Excel Support"
     ],
-    "screenshot": "/screenshots/excelformulabot.png"
+    "screenshot": "/screenshots/excelformulabot.png",
+    "whatIs": "Excelformulabot is a specialized AI assistant designed to help users master Excel formulas and functions. It provides intelligent formula suggestions, detailed explanations, and step-by-step guidance to solve complex Excel problems and improve data processing efficiency.",
+    "keyFeatures": [
+      "Excel formula problem solving",
+      "Formula suggestion generation",
+      "Formula explanation",
+      "Excel data processing enhancement",
+      "Formula assistance"
+    ],
+    "useCases": [
+      "Solving Excel formula problems",
+      "Getting formula suggestions",
+      "Understanding formula explanations",
+      "Enhancing Excel data processing"
+    ],
+    "whoIsFor": "Anyone needing AI-powered Excel formula assistance.",
+    "faq": [
+      {"question": "Is Excelformulabot free?", "answer": "Excelformulabot offers a free tier with basic formula assistance, while premium plans provide more advanced features and unlimited formula help."},
+      {"question": "Can Excelformulabot generate text in real-time?", "answer": "Excelformulabot provides instant formula suggestions and explanations based on user queries, making it a real-time Excel assistance tool."},
+      {"question": "What types of Excel problems can it solve?", "answer": "Excelformulabot can help with various Excel challenges including complex formulas, data analysis, VLOOKUP functions, pivot tables, and many other Excel features."}
+    ],
+    "reviews": [
+      "Excelformulabot is a fantastic tool for Excel formula assistance!",
+      "Makes solving formula problems so much easier.",
+      "High-quality formula suggestions every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -774,7 +1664,32 @@
       "Content Optimization",
       "Professional Writing"
     ],
-    "screenshot": "/screenshots/poised.png"
+    "screenshot": "/screenshots/poised.png",
+    "whatIs": "Poised is an AI-powered business writing assistant that specializes in creating professional, persuasive, and effective business communications. It helps users craft compelling emails, reports, and documents with improved grammar, style, and tone to enhance professional communication.",
+    "keyFeatures": [
+      "Professional email writing",
+      "Report writing",
+      "Business text creation",
+      "Grammar checking",
+      "Style optimization"
+    ],
+    "useCases": [
+      "Writing professional business emails",
+      "Creating reports",
+      "Creating business texts",
+      "Improving text quality"
+    ],
+    "whoIsFor": "Anyone needing AI-powered professional text writing.",
+    "faq": [
+      {"question": "Is Poised free?", "answer": "Poised offers a free tier with basic writing assistance, while premium plans provide advanced features and unlimited writing help."},
+      {"question": "Can Poised generate text in real-time?", "answer": "Poised provides real-time writing suggestions and improvements as you type, helping enhance your business communications instantly."},
+      {"question": "What types of business documents can Poised help with?", "answer": "Poised can assist with various business documents including emails, reports, proposals, presentations, and other professional communications."}
+    ],
+    "reviews": [
+      "Poised is a fantastic tool for professional text writing!",
+      "Makes writing professional texts so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -795,7 +1710,32 @@
       "Visual Planning",
       "Collaboration Tools"
     ],
-    "screenshot": "/screenshots/gitmind.png"
+    "screenshot": "/screenshots/gitmind.png",
+    "whatIs": "GitMind is a collaborative online mind mapping and brainstorming platform that enables teams to visualize ideas, organize thoughts, and plan projects together. It offers intuitive tools for creating structured diagrams, flowcharts, and organizational charts with real-time collaboration features.",
+    "keyFeatures": [
+      "Mind mapping",
+      "Multi-person collaboration",
+      "Thought organization",
+      "Project planning",
+      "Knowledge recording"
+    ],
+    "useCases": [
+      "Organizing thoughts",
+      "Planning projects",
+      "Recording knowledge",
+      "Collaborating on mind maps"
+    ],
+    "whoIsFor": "Anyone needing an online mind-mapping tool for collaboration.",
+    "faq": [
+      {"question": "Is GitMind free?", "answer": "GitMind offers a free plan with basic mind mapping features, while premium plans provide advanced collaboration tools and unlimited diagrams."},
+      {"question": "Can GitMind generate text in real-time?", "answer": "GitMind focuses on visual mind mapping and diagram creation rather than text generation, though it supports adding text content to diagrams."},
+      {"question": "What types of diagrams can GitMind create?", "answer": "GitMind can create various diagrams including mind maps, flowcharts, organizational charts, fishbone diagrams, and other visual thinking tools."}
+    ],
+    "reviews": [
+      "GitMind is a fantastic mind-mapping tool!",
+      "Makes organizing thoughts so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -816,7 +1756,32 @@
       "Work Management",
       "Life Management"
     ],
-    "screenshot": "/screenshots/monica.png"
+    "screenshot": "/screenshots/monica.png",
+    "whatIs": "Monica is an AI-powered personal assistant designed to help users organize and optimize their daily tasks, schedules, and personal information. It provides intelligent task management, calendar optimization, and contact organization to improve productivity and work-life balance.",
+    "keyFeatures": [
+      "Task management",
+      "Schedule management",
+      "Contact management",
+      "Personal work efficiency",
+      "Life organization"
+    ],
+    "useCases": [
+      "Managing tasks",
+      "Managing schedules",
+      "Managing contacts",
+      "Improving personal productivity"
+    ],
+    "whoIsFor": "Anyone needing a personal assistant to manage tasks and schedules.",
+    "faq": [
+      {"question": "Is Monica free?", "answer": "Monica offers a free tier with basic personal assistant features, while premium plans provide advanced task management and productivity tools."},
+      {"question": "Can Monica generate text in real-time?", "answer": "Monica provides real-time assistance with task management, scheduling, and personal organization rather than text generation."},
+      {"question": "What platforms does Monica integrate with?", "answer": "Monica integrates with various productivity tools and platforms to help streamline task management and scheduling across different applications."}
+    ],
+    "reviews": [
+      "Monica is a fantastic personal assistant!",
+      "Makes managing tasks and schedules so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Office Productivity Tools",
@@ -837,7 +1802,32 @@
       "Character-based Communication",
       "Conversation Tools"
     ],
-    "screenshot": "/screenshots/character.ai.png"
+    "screenshot": "/screenshots/character.ai.png",
+    "whatIs": "Character.ai is an innovative AI platform that enables users to create and interact with virtual characters through conversational AI. It's designed for creative writing, language learning, role-playing, and entertainment, allowing users to engage in meaningful dialogues with AI-powered personalities.",
+    "keyFeatures": [
+      "Virtual character creation",
+      "Conversation generation",
+      "Creative writing assistance",
+      "Language learning support",
+      "Simulated conversation creation"
+    ],
+    "useCases": [
+      "Creating virtual characters for conversations",
+      "Generating creative writing",
+      "Assisting with language learning",
+      "Creating simulated conversations"
+    ],
+    "whoIsFor": "Anyone needing AI-powered character generation for conversations.",
+    "faq": [
+      {"question": "Is Character.ai free?", "answer": "Character.ai offers a free tier with basic character interactions, while premium plans provide faster response times and advanced character creation features."},
+      {"question": "Can Character.ai generate text in real-time?", "answer": "Character.ai provides real-time conversational responses, though response speed may vary depending on server load and subscription tier."},
+      {"question": "Can users create their own characters?", "answer": "Yes, Character.ai allows users to create custom characters with specific personalities, backgrounds, and conversation styles for personalized interactions."}
+    ],
+    "reviews": [
+      "Character.ai is a fantastic tool for character generation!",
+      "Makes creating virtual characters so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Coding & Development",
@@ -858,7 +1848,32 @@
       "Development Assistance",
       "Code Assistance"
     ],
-    "screenshot": "/screenshots/githubcopilot.png"
+    "screenshot": "/screenshots/githubcopilot.png",
+    "whatIs": "GitHub Copilot is an advanced AI-powered coding assistant that provides intelligent code suggestions and completions in real-time. It understands context from your codebase and comments, offering relevant code snippets, function implementations, and documentation across multiple programming languages to significantly boost developer productivity.",
+    "keyFeatures": [
+      "Code suggestion generation",
+      "Context-based code generation",
+      "Multi-language programming support",
+      "Coding efficiency improvement",
+      "Automatic code generation"
+    ],
+    "useCases": [
+      "Generating code suggestions",
+      "Improving coding efficiency",
+      "Providing programming assistance",
+      "Code completion"
+    ],
+    "whoIsFor": "Anyone needing AI-powered programming assistance.",
+    "faq": [
+      {"question": "Is GitHub Copilot free?", "answer": "GitHub Copilot offers a free trial, but requires a paid subscription ($10/month for individuals) for continued use, with special pricing for students and teachers."},
+      {"question": "Can GitHub Copilot generate code in real-time?", "answer": "Yes, GitHub Copilot provides real-time code suggestions and completions as you type, understanding context from your code and comments."},
+      {"question": "What programming languages does Copilot support?", "answer": "GitHub Copilot supports most major programming languages including Python, JavaScript, TypeScript, Java, C++, Go, Ruby, and many others."}
+    ],
+    "reviews": [
+      "GitHub Copilot is a fantastic programming assistant!",
+      "Makes coding so much easier.",
+      "High-quality code generation every time."
+    ]
   },
   {
     "category": "Coding & Development",
@@ -879,7 +1894,32 @@
       "Development Tools",
       "Programming Support"
     ],
-    "screenshot": "/screenshots/replitghostwriter.png"
+    "screenshot": "/screenshots/replitghostwriter.png",
+    "whatIs": "Replit Ghostwriter is an AI-powered code completion tool specifically designed for Replit's online development environment. It provides intelligent code suggestions, real-time assistance, and contextual help to enhance the coding experience within Replit's collaborative programming platform.",
+    "keyFeatures": [
+      "Real-time code completion",
+      "Code suggestion generation",
+      "Programming process assistance",
+      "Online programming environment integration",
+      "Smooth code writing"
+    ],
+    "useCases": [
+      "Providing real-time code completion",
+      "Generating code suggestions",
+      "Assisting with programming",
+      "Smooth code writing"
+    ],
+    "whoIsFor": "Anyone using Replit's online programming environment, seeking real-time code assistance.",
+    "faq": [
+      {"question": "Is Replit Ghostwriter free?", "answer": "Replit Ghostwriter is available as part of Replit's platform, with some features included in free plans and advanced capabilities in paid subscriptions."},
+      {"question": "Can Replit Ghostwriter generate text in real-time?", "answer": "Yes, Replit Ghostwriter provides real-time code suggestions and completions as you type within the Replit environment."},
+      {"question": "What programming languages does Ghostwriter support?", "answer": "Replit Ghostwriter supports multiple programming languages and integrates seamlessly with Replit's multi-language development environment."}
+    ],
+    "reviews": [
+      "Replit Ghostwriter is a fantastic code assistance tool!",
+      "Makes coding so much smoother.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Coding & Development",
@@ -900,7 +1940,32 @@
       "Model Deployment",
       "Machine Learning Tools"
     ],
-    "screenshot": "/screenshots/huggingface.png"
+    "screenshot": "/screenshots/huggingface.png",
+    "whatIs": "Hugging Face is a leading open-source platform for machine learning and AI development that provides access to thousands of pre-trained models, datasets, and tools. It serves as a comprehensive hub for natural language processing, computer vision, and other AI applications, enabling developers to easily discover, share, and deploy machine learning models.",
+    "keyFeatures": [
+      "Pre-trained model provision",
+      "Natural language processing models",
+      "Computer vision models",
+      "Model development support",
+      "Model application assistance"
+    ],
+    "useCases": [
+      "Accessing pre-trained models",
+      "Developing and applying models",
+      "Machine learning platform",
+      "Model access"
+    ],
+    "whoIsFor": "Anyone needing pre-trained models for various AI applications.",
+    "faq": [
+      {"question": "Is Hugging Face free?", "answer": "Hugging Face offers free access to most models and datasets, with premium features and enterprise solutions available through paid plans."},
+      {"question": "Can Hugging Face generate text in real-time?", "answer": "Hugging Face provides access to various AI models that can generate text, images, and other content based on user prompts and model capabilities."},
+      {"question": "What types of models are available on Hugging Face?", "answer": "Hugging Face hosts models for text generation, translation, image classification, speech recognition, and many other AI tasks across multiple domains."}
+    ],
+    "reviews": [
+      "Hugging Face is a fantastic machine learning platform!",
+      "Makes accessing pre-trained models so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Coding & Development",
@@ -921,7 +1986,32 @@
       "API Tools",
       "Speech Tools"
     ],
-    "screenshot": "/screenshots/assemblyai.png"
+    "screenshot": "/screenshots/assemblyai.png",
+    "whatIs": "AssemblyAI is a specialized AI platform that provides advanced speech recognition and audio processing capabilities through developer-friendly APIs. It offers high-accuracy transcription, sentiment analysis, speaker detection, and other audio intelligence features that developers can easily integrate into their applications.",
+    "keyFeatures": [
+      "Speech recognition",
+      "Speech processing",
+      "API interface provision",
+      "Speech recognition integration",
+      "Application integration"
+    ],
+    "useCases": [
+      "Integrating speech recognition functions",
+      "Developing applications with speech technology",
+      "API development",
+      "Speech analysis"
+    ],
+    "whoIsFor": "Anyone needing speech recognition and processing API integration.",
+    "faq": [
+      {"question": "Is AssemblyAI free?", "answer": "AssemblyAI offers a free tier with limited API calls, while paid plans provide higher limits and access to advanced features like real-time transcription."},
+      {"question": "Can AssemblyAI generate text in real-time?", "answer": "AssemblyAI provides real-time speech-to-text transcription capabilities, making it suitable for live audio processing applications."},
+      {"question": "What audio formats does AssemblyAI support?", "answer": "AssemblyAI supports various audio formats including MP3, WAV, M4A, and FLAC, with support for both file uploads and streaming audio."}
+    ],
+    "reviews": [
+      "AssemblyAI is a fantastic speech recognition tool!",
+      "Makes integrating speech recognition so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Coding & Development",
@@ -942,7 +2032,32 @@
       "Technical Documentation",
       "Developer Tools"
     ],
-    "screenshot": "/screenshots/phind.png"
+    "screenshot": "/screenshots/phind.png",
+    "whatIs": "Phind is an AI-powered search engine specifically designed for developers and technical professionals. It understands complex technical queries and provides relevant code examples, documentation, and solutions from reliable sources, making it easier for developers to find accurate technical information quickly.",
+    "keyFeatures": [
+      "Developer search engine",
+      "Technical problem understanding",
+      "Code example provision",
+      "Documentation provision",
+      "Solution generation"
+    ],
+    "useCases": [
+      "Searching for technical problems",
+      "Finding code examples",
+      "Accessing documentation",
+      "Getting solutions"
+    ],
+    "whoIsFor": "Anyone needing AI-powered developer assistance.",
+    "faq": [
+      {"question": "Is Phind free?", "answer": "Phind offers a free tier with basic search capabilities, while premium plans provide faster response times and advanced features."},
+      {"question": "Can Phind generate text in real-time?", "answer": "Phind provides real-time search results and can generate explanations and code examples based on your technical queries."},
+      {"question": "What types of technical content can Phind search?", "answer": "Phind can search through documentation, code repositories, technical blogs, Stack Overflow, and other developer resources to find relevant solutions."}
+    ],
+    "reviews": [
+      "Phind is a fantastic developer search engine!",
+      "Makes finding solutions so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Search & Prompt Engineering",
@@ -963,7 +2078,32 @@
       "Search Enhancement",
       "Intelligent Information Access"
     ],
-    "screenshot": "/screenshots/perplexityai.png"
+    "screenshot": "/screenshots/perplexityai.png",
+    "whatIs": "Perplexity AI is an advanced AI-powered search engine that provides conversational search experiences with comprehensive, well-sourced answers. It excels at understanding complex queries and delivering accurate information from multiple sources, making it particularly effective for research, technical questions, and in-depth topic exploration.",
+    "keyFeatures": [
+      "Intelligent search",
+      "Question understanding",
+      "Accurate search results",
+      "Comprehensive search",
+      "Technical field search"
+    ],
+    "useCases": [
+      "Searching for questions",
+      "Getting accurate search results",
+      "Enhancing search experience",
+      "Accessing intelligent information"
+    ],
+    "whoIsFor": "Anyone needing an intelligent search engine for various questions.",
+    "faq": [
+      {"question": "Is Perplexity AI free?", "answer": "Perplexity AI offers a free tier with basic search capabilities, while premium plans provide advanced features and faster response times."},
+      {"question": "Can Perplexity AI generate text in real-time?", "answer": "Perplexity AI provides real-time search results and generates comprehensive answers based on current information from multiple sources."},
+      {"question": "How does Perplexity AI differ from traditional search engines?", "answer": "Perplexity AI provides conversational, comprehensive answers with source citations rather than just links, making it easier to get detailed information quickly."}
+    ],
+    "reviews": [
+      "Perplexity AI is a fantastic intelligent search engine!",
+      "Makes searching for questions so much easier.",
+      "High-quality text generation every time."
+    ]
   },
   {
     "category": "Search & Prompt Engineering",
@@ -984,6 +2124,31 @@
       "Prompt Tools",
       "Prompt Management"
     ],
-    "screenshot": "/screenshots/promptbase.png"
+    "screenshot": "/screenshots/promptbase.png",
+    "whatIs": "PromptBase is a specialized marketplace for AI prompts where users can discover, buy, sell, and share high-quality prompts for various AI models. It serves as a community platform for prompt engineers and AI enthusiasts to monetize their expertise and access proven prompts for different applications.",
+    "keyFeatures": [
+      "Prompt trading",
+      "Prompt sharing",
+      "High-quality prompt provision",
+      "AI prompt access",
+      "Prompt marketplace"
+    ],
+    "useCases": [
+      "Buying and selling prompts",
+      "Sharing and accessing high-quality prompts",
+      "Prompt commerce",
+      "Prompt community"
+    ],
+    "whoIsFor": "Anyone needing high-quality AI prompts for various applications.",
+    "faq": [
+      {"question": "Is PromptBase free?", "answer": "PromptBase allows free browsing and some prompt access, but purchasing premium prompts requires payment, with creators earning from their prompt sales."},
+      {"question": "Can PromptBase generate text in real-time?", "answer": "PromptBase is a marketplace for prompts rather than a text generation tool, though users can test prompts with supported AI models."},
+      {"question": "What types of prompts are available on PromptBase?", "answer": "PromptBase offers prompts for various AI models including ChatGPT, DALL-E, Midjourney, and others, covering creative writing, image generation, coding, and more."}
+    ],
+    "reviews": [
+      "PromptBase is a fantastic prompt trading platform!",
+      "Makes accessing high-quality prompts so much easier.",
+      "High-quality text generation every time."
+    ]
   }
 ]

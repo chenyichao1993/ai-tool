@@ -55,10 +55,51 @@ function slugifyCategory(category: string) {
     .replace(/[^a-z0-9-]/g, '');
 }
 
+// 工具名hash生成虚拟评分（4/4.5/5）
+function getVirtualRating(name: string): number {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const val = Math.abs(hash % 3);
+  return [4, 4.5, 5][val];
+}
+// User Reviews每条评论独立评分（4/4.5/5），用工具名+index hash
+function getReviewRating(name: string, idx: number): number {
+  let hash = 0;
+  const str = name + '_' + idx;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const val = Math.abs(hash % 3);
+  return [4, 4.5, 5][val];
+}
+// 工具评论总数hash（8~50之间）
+function getReviewsCount(name: string): number {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return 8 + (Math.abs(hash) % 43); // 8~50
+}
+
 export default function ToolClient(props: { id: string; toolName?: string | null }) {
+  // 所有 useState/useEffect 必须在顶层
   const [tool, setTool] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [copySuccess, setCopySuccess] = useState(false);
+
+  // 假评论区状态
+  const ratingFields = [
+    'Value for Money',
+    'Ease of Use',
+    'Performance',
+    'Features Available',
+    'Support Quality',
+  ];
+  const [userRatings, setUserRatings] = useState<{[key:string]:number}>({});
+  const [userComment, setUserComment] = useState('');
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   useEffect(() => {
     fetch('/AI%20tool.json')
@@ -85,9 +126,23 @@ export default function ToolClient(props: { id: string; toolName?: string | null
   }
 
   const screenshot = tool.screenshot || '/placeholder1.png';
-  const rating = tool.rating || 5;
-  const reviews = tool.reviews || 0;
+  const virtualRating = getVirtualRating(tool.name || '');
+  const reviews = getReviewsCount(tool.name || '');
   const saved = tool.saved || 0;
+
+  const handleStarClick = (field: string, value: number) => {
+    setUserRatings(r => ({ ...r, [field]: value }));
+  };
+  const handleCommentChange = (e: any) => setUserComment(e.target.value);
+  const handleFakeSubmit = (e: any) => {
+    e.preventDefault();
+    setSubmitSuccess(true);
+    setTimeout(() => {
+      setSubmitSuccess(false);
+      setUserRatings({});
+      setUserComment('');
+    }, 2000);
+  };
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -110,8 +165,8 @@ export default function ToolClient(props: { id: string; toolName?: string | null
             <p className="text-base text-gray-700 mb-4">{tool.description}</p>
             <div className="flex items-center gap-6 mb-4">
               <div className="flex items-center gap-2">
-                <StarRating rating={rating} />
-                <span className="text-sm text-gray-600">{rating.toFixed(1)}</span>
+                <StarRating rating={virtualRating} />
+                <span className="text-sm text-gray-600">{virtualRating.toFixed(1)}</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -229,6 +284,143 @@ export default function ToolClient(props: { id: string; toolName?: string | null
               </div>
             </a>
           </div>
+        </div>
+
+        {/* 结构化内容区块 */}
+        <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* What is */}
+          {tool.whatIs && (
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">What is {tool.name}?</h2>
+              <p className="text-gray-700 leading-relaxed">{tool.whatIs}</p>
+            </div>
+          )}
+
+          {/* Key Features */}
+          {tool.keyFeatures && tool.keyFeatures.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Key Features</h2>
+              <ul className="space-y-2">
+                {tool.keyFeatures.map((feature: string, index: number) => (
+                  <li key={index} className="flex items-start">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Use Cases */}
+          {tool.useCases && tool.useCases.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Use Cases</h2>
+              <ul className="space-y-2">
+                {tool.useCases.map((useCase: string, index: number) => (
+                  <li key={index} className="flex items-start">
+                    <svg className="w-5 h-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700">{useCase}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Who is it for */}
+          {tool.whoIsFor && (
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Who is it for?</h2>
+              <p className="text-gray-700 leading-relaxed">{tool.whoIsFor}</p>
+            </div>
+          )}
+
+          {/* FAQ */}
+          {tool.faq && tool.faq.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm border p-6 lg:col-span-2">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Frequently Asked Questions</h2>
+              <div className="space-y-4">
+                {tool.faq.map((faq: { question: string; answer: string }, index: number) => (
+                  <div key={index} className="border-b border-gray-200 pb-4 last:border-b-0">
+                    <h3 className="text-lg font-medium text-gray-900 mb-2">{faq.question}</h3>
+                    <p className="text-gray-700">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Reviews */}
+          {tool.reviews && tool.reviews.length > 0 && (
+            <div className="bg-white rounded-lg shadow-sm border p-6 lg:col-span-2">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">User Reviews</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {tool.reviews.map((review: string, index: number) => {
+                  const reviewRating = getReviewRating(tool.name || '', index);
+                  return (
+                    <div key={index} className="bg-gray-50 rounded-lg p-4">
+                      <div className="flex items-center mb-2">
+                        <StarRating rating={reviewRating} />
+                        <span className="text-sm text-gray-600 ml-2">{reviewRating}</span>
+                      </div>
+                      <p className="text-gray-700 text-sm italic">"{review}"</p>
+                    </div>
+                  );
+                })}
+              </div>
+              {/* 假评论区 */}
+              <div className="mt-8 bg-blue-50 rounded-lg p-1 md:p-6">
+                <h3 className="text-lg font-semibold text-black mb-4">How do you rate {tool.name}?</h3>
+                {submitSuccess ? (
+                  <div className="bg-green-100 text-green-900 font-semibold rounded px-4 py-2 mb-2">Thanks, Your rating was recorded successfully!</div>
+                ) : (
+                  <form onSubmit={handleFakeSubmit}>
+                    <div className="space-y-3 mb-4">
+                      {ratingFields.map(field => (
+                        <div key={field} className="flex items-center justify-between">
+                          <span className="text-base text-gray-800">{field}</span>
+                          <div className="flex items-center">
+                            {[1,2,3,4,5].map(star => (
+                              <svg
+                                key={star}
+                                onClick={() => handleStarClick(field, star)}
+                                className={`w-6 h-6 cursor-pointer ${userRatings[field] >= star ? 'text-yellow-400' : 'text-gray-300'}`}
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                              </svg>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {/* 输入框单独一行，圆角，宽度100%，背景色与评分区一致 */}
+                    <textarea
+                      className="w-full max-w-[320px] mx-auto min-w-0 rounded-lg px-2 py-2 border border-gray-300 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-[#7C5CFA] focus:border-[#7C5CFA] transition mb-4 md:max-w-none md:mx-0 md:px-2 md:py-2"
+                      rows={3}
+                      placeholder="Leave us your comments"
+                      value={userComment}
+                      onChange={handleCommentChange}
+                      style={{ minWidth: 0 }}
+                    />
+                    {/* 按钮单独一行，居中，宽度适中，按钮与输入框有mt-4间隙 */}
+                    <div className="flex justify-center">
+                      <button
+                        type="submit"
+                        className="w-full max-w-[320px] mx-auto min-w-0 rounded-md shadow-sm text-sm font-medium px-2 py-2 bg-[#7C5CFA] hover:bg-[#6842e6] text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#7C5CFA] mt-2 md:max-w-none md:mx-0 md:rounded-lg md:font-semibold md:px-6 md:py-2 md:mt-4 md:max-w-xs"
+                      >
+                        Submit My Rating
+                      </button>
+                    </div>
+                  </form>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </main>
