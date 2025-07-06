@@ -55,6 +55,11 @@ export default function LoginPage() {
     e.preventDefault();
     setResetLoading(true);
     setResetMsg("");
+    if (!resetEmail) {
+      setResetMsg("Please fill out this field.");
+      setResetLoading(false);
+      return;
+    }
     const { error } = await supabase.auth.resetPasswordForEmail(resetEmail);
     if (error) {
       setResetMsg(error.message);
@@ -74,10 +79,21 @@ export default function LoginPage() {
         router.replace('/');
       }
     }
-    if (emailRef.current) emailRef.current.setAttribute('oninvalid', "this.setCustomValidity('Please fill out this field.')");
-    if (emailRef.current) emailRef.current.setAttribute('oninput', "this.setCustomValidity('')");
-    if (passwordRef.current) passwordRef.current.setAttribute('oninvalid', "this.setCustomValidity('Please fill out this field.')");
-    if (passwordRef.current) passwordRef.current.setAttribute('oninput', "this.setCustomValidity('')");
+    // 设置所有输入框的校验提示为英文
+    if (emailRef.current) {
+      emailRef.current.setAttribute('oninvalid', "this.setCustomValidity('Please fill out this field.')");
+      emailRef.current.setAttribute('oninput', "this.setCustomValidity('')");
+    }
+    if (passwordRef.current) {
+      passwordRef.current.setAttribute('oninvalid', "this.setCustomValidity('Please fill out this field.')");
+      passwordRef.current.setAttribute('oninput', "this.setCustomValidity('')");
+    }
+    // 针对重置密码弹窗输入框
+    const resetInput = document.querySelector('input[placeholder="Enter your email"]');
+    if (resetInput) {
+      resetInput.setAttribute('oninvalid', "this.setCustomValidity('Please fill out this field.')");
+      resetInput.setAttribute('oninput', "this.setCustomValidity('')");
+    }
   }, []);
 
   return (
@@ -132,13 +148,12 @@ export default function LoginPage() {
         <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.25)', zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ background: '#fff', borderRadius: 10, padding: 28, minWidth: 280, maxWidth: '90vw', boxShadow: '0 2px 16px rgba(0,0,0,0.12)', position: 'relative' }}>
             <h3 style={{ marginBottom: 16 }}>Reset Password</h3>
-            <form onSubmit={handleReset} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <form onSubmit={handleReset} noValidate style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <input
                 type="email"
                 placeholder="Enter your email"
                 value={resetEmail}
                 onChange={e => setResetEmail(e.target.value)}
-                required
                 style={{ padding: 8, borderRadius: 4, border: '1px solid #ccc' }}
               />
               <button type="submit" disabled={resetLoading} style={{ padding: 10, borderRadius: 4, background: PRIMARY_COLOR, color: '#fff', border: 'none', fontWeight: 600 }}>
