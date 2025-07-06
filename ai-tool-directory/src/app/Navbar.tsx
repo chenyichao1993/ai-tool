@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
+import { useRouter } from "next/navigation";
 
 const navLinks = [
   { name: { en: "Home", zh: "首页" }, href: "/" },
@@ -16,6 +17,7 @@ export default function Navbar() {
   const langRef = useRef<HTMLDivElement>(null);
   const toggleLang = () => setLang(l => l === 'en' ? 'zh' : 'en');
   const handleLangClick = () => setShowLang(s => !s);
+  const router = useRouter();
 
   useEffect(() => {
     if (!showLang) return;
@@ -46,7 +48,9 @@ export default function Navbar() {
           {lang === 'en' ? 'Submit Tool' : '提交工具'}
         </Link>
         <div className={styles.loginLangWrap}>
-          <button className={styles.loginBtn}>{lang === 'en' ? 'Login' : '登录'}</button>
+          <Link href="/login" legacyBehavior>
+            <a className={styles.loginBtn}>{lang === 'en' ? 'Login' : '登录'}</a>
+          </Link>
           <div className={styles.langSwitcher} onClick={handleLangClick} tabIndex={0} ref={langRef}>
             <span className={styles.langIcon} role="img" aria-label="language">🌐</span>
             <span className={styles.langText}>{lang === 'en' ? 'EN' : '中文'}</span>
@@ -77,7 +81,7 @@ export default function Navbar() {
               {lang === 'en' ? 'Submit Tool' : '提交工具'}
             </Link>
             <div className={styles.loginLangWrap}>
-              <button className={styles.loginBtn}>{lang === 'en' ? 'Login' : '登录'}</button>
+              <a className={styles.loginBtn} href="/login" onClick={e => { e.preventDefault(); setMenuOpen(false); router.push('/login'); }}>{lang === 'en' ? 'Login' : '登录'}</a>
               <div className={styles.langSwitcher} onClick={handleLangClick} tabIndex={0} ref={langRef}>
                 <span className={styles.langIcon} role="img" aria-label="language">🌐</span>
                 <span className={styles.langText}>{lang === 'en' ? 'EN' : '中文'}</span>
