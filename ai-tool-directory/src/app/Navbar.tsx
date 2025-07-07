@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import { useRouter } from "next/navigation";
 import { supabase } from "./supabaseClient";
+import type { User } from '@supabase/supabase-js';
 
 const navLinks = [
   { name: { en: "Home", zh: "首页" }, href: "/" },
@@ -19,7 +20,7 @@ export default function Navbar() {
   const toggleLang = () => setLang(l => l === 'en' ? 'zh' : 'en');
   const handleLangClick = () => setShowLang(s => !s);
   const router = useRouter();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   useEffect(() => {
