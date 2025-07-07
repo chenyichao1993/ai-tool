@@ -67,7 +67,9 @@ export default function LoginPage() {
       setResetLoading(false);
       return;
     }
-    const { error } = await supabase.auth.resetPasswordForEmail(resetEmail);
+    const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+      redirectTo: "https://www.toolaize.com/reset-password"
+    });
     if (error) {
       setResetMsg(error.message);
     } else {
