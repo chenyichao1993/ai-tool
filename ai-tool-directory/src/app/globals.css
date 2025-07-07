@@ -239,6 +239,11 @@ button, a[role="button"], .btn, input[type="button"], input[type="submit"], inpu
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
+  .login-card {
+    padding: 16px !important;
+    margin: 8px !important;
+    max-width: 98vw !important;
+  }
 }
 
 @media (min-width: 601px) {

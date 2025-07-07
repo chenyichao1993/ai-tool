@@ -99,6 +99,7 @@ export default function LoginPage() {
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: "#fafbfc" }}>
       <div
+        className="login-card"
         style={{
           width: "100%",
           maxWidth: 400,
@@ -107,11 +108,7 @@ export default function LoginPage() {
           boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
           padding: 32,
           margin: 16,
-          boxSizing: "border-box",
-          "@media (maxWidth: 600px)": {
-            padding: 16,
-            margin: 8,
-          },
+          boxSizing: "border-box"
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 24 }}>
