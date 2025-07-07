@@ -98,7 +98,22 @@ export default function LoginPage() {
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", background: "#fafbfc" }}>
-      <div style={{ width: "100%", maxWidth: 400, background: "#fff", borderRadius: 12, boxShadow: "0 2px 16px rgba(0,0,0,0.08)", padding: 32, margin: 16 }}>
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 400,
+          background: "#fff",
+          borderRadius: 12,
+          boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+          padding: 32,
+          margin: 16,
+          boxSizing: "border-box",
+          "@media (maxWidth: 600px)": {
+            padding: 16,
+            margin: 8,
+          },
+        }}
+      >
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: 24 }}>
           <Image src="/logo.png" alt="logo" width={56} height={56} />
           <h1 style={{ fontWeight: 700, fontSize: 28, margin: "16px 0 0 0", color: PRIMARY_COLOR }}>Toolaize</h1>

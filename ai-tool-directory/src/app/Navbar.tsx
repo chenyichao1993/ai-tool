@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import { useRouter } from "next/navigation";
+import { supabase } from "./supabaseClient";
 
 const navLinks = [
   { name: { en: "Home", zh: "首页" }, href: "/" },
@@ -18,6 +19,20 @@ export default function Navbar() {
   const toggleLang = () => setLang(l => l === 'en' ? 'zh' : 'en');
   const handleLangClick = () => setShowLang(s => !s);
   const router = useRouter();
+  const [user, setUser] = useState(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  useEffect(() => {
+    // 获取当前用户
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data?.user || null);
+    });
+    // 监听登录状态变化
+    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null);
+    });
+    return () => { listener?.subscription?.unsubscribe(); };
+  }, []);
 
   useEffect(() => {
     if (!showLang) return;
@@ -48,9 +63,48 @@ export default function Navbar() {
           {lang === 'en' ? 'Submit Tool' : '提交工具'}
         </Link>
         <div className={styles.loginLangWrap}>
-          <Link href="/login" legacyBehavior>
-            <a className={styles.loginBtn}>{lang === 'en' ? 'Login' : '登录'}</a>
-          </Link>
+          {user ? (
+            <div style={{ position: 'relative' }}>
+              <div
+                className={styles.loginBtn}
+                style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', minWidth: 40 }}
+                onClick={() => setUserMenuOpen(v => !v)}
+              >
+                {user.user_metadata?.avatar_url ? (
+                  <img src={user.user_metadata.avatar_url} alt="avatar" style={{ width: 28, height: 28, borderRadius: '50%', marginRight: 8 }} />
+                ) : (
+                  <span style={{ fontWeight: 700, marginRight: 8 }}>
+                    {user.user_metadata?.full_name || user.email?.split('@')[0] || 'User'}
+                  </span>
+                )}
+                ▼
+              </div>
+              {userMenuOpen && (
+                <div style={{ position: 'absolute', right: 0, top: 36, background: '#fff', border: '1px solid #eee', borderRadius: 6, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', minWidth: 120, zIndex: 100 }}>
+                  <Link href="/profile" className={styles.link} style={{ display: 'block', padding: 10, textAlign: 'left' }} onClick={()=>setUserMenuOpen(false)}>
+                    {lang === 'en' ? 'Profile' : '个人中心'}
+                  </Link>
+                  <div style={{ borderTop: '1px solid #eee' }} />
+                  <div
+                    className={styles.link}
+                    style={{ display: 'block', padding: 10, textAlign: 'left', cursor: 'pointer' }}
+                    onClick={async () => {
+                      await supabase.auth.signOut();
+                      setUser(null);
+                      setUserMenuOpen(false);
+                      router.refresh();
+                    }}
+                  >
+                    {lang === 'en' ? 'Logout' : '退出登录'}
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Link href="/login" legacyBehavior>
+              <a className={styles.loginBtn}>{lang === 'en' ? 'Login' : '登录'}</a>
+            </Link>
+          )}
           <div className={styles.langSwitcher} onClick={handleLangClick} tabIndex={0} ref={langRef}>
             <span className={styles.langIcon} role="img" aria-label="language">🌐</span>
             <span className={styles.langText}>{lang === 'en' ? 'EN' : '中文'}</span>
