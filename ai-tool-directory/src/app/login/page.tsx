@@ -16,6 +16,7 @@ export default function LoginPage() {
   const [resetEmail, setResetEmail] = useState("");
   const [resetMsg, setResetMsg] = useState("");
   const [resetLoading, setResetLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const router = useRouter();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -26,18 +27,24 @@ export default function LoginPage() {
     setError("");
     try {
       let result;
+      // 临时创建一个带persistSession选项的supabase实例
+      const { createClient } = await import('@supabase/supabase-js');
+      const supabaseUrl = 'https://ufhemmzwllrlygjtkgrl.supabase.co';
+      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmaGVtbXp3bGxybHlnanRrZ3JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE4MDE0NDAsImV4cCI6MjA2NzM3NzQ0MH0.QSF0KsLbzG0HLT-Ps-wNXonWoRuY59kNq2Huuk1BhNg';
+      const tempSupabase = createClient(supabaseUrl, supabaseAnonKey, { auth: { persistSession: rememberMe } });
       if (isLogin) {
-        result = await supabase.auth.signInWithPassword({ email, password });
+        result = await tempSupabase.auth.signInWithPassword({ email, password });
       } else {
-        result = await supabase.auth.signUp({ email, password });
+        result = await tempSupabase.auth.signUp({ email, password });
       }
       if (result.error) {
-        setError(result.error.message);
+        setError('Invalid email or password. Please check and try again.');
       } else {
+        router.refresh();
         router.push("/");
       }
     } catch (err: any) {
-      setError(err.message || "Unknown error");
+      setError("Unknown error. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -140,6 +147,15 @@ export default function LoginPage() {
             required
             style={{ padding: 10, borderRadius: 6, border: "1px solid #ddd", fontSize: 16 }}
           />
+          <label style={{ display: 'flex', alignItems: 'center', fontSize: 14, marginBottom: 4 }}>
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={e => setRememberMe(e.target.checked)}
+              style={{ marginRight: 6 }}
+            />
+            Remember me
+          </label>
           {error && <div style={{ color: "red", fontSize: 14 }}>{error}</div>}
           <button type="submit" disabled={loading} style={{ padding: 12, borderRadius: 6, background: PRIMARY_COLOR, color: "#fff", border: "none", fontWeight: 700, fontSize: 16, marginTop: 4 }}>
             {loading ? "Processing..." : isLogin ? "Sign In" : "Sign Up"}
