@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function Footer() {
   const [showModal, setShowModal] = useState(false);
   const [copied, setCopied] = useState(false);
-  const email = "cocolovetin@foxmail.com";
+  const email = "business@toolaize.com";
 
   const handleCopy = async () => {
     try {

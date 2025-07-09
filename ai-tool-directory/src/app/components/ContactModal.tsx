@@ -8,7 +8,7 @@ interface ContactModalProps {
   email?: string;
 }
 
-const ContactModal: React.FC<ContactModalProps> = ({ open, onClose, email = "cocolovetin@foxmail.com" }) => {
+const ContactModal: React.FC<ContactModalProps> = ({ open, onClose, email = "business@toolaize.com" }) => {
   const [copied, setCopied] = useState(false);
   if (!open) return null;
   const handleCopy = async () => {
