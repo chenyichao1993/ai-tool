@@ -33,7 +33,7 @@ export default function CategoryClient({ categorySlug, categoryName }: { categor
       .then(data => {
         const toolsWithId = data.map((tool: any) => ({
           ...tool,
-          id: tool.name ? tool.name.toLowerCase().replace(/\s+/g, '-') : 'unknown',
+          id: tool.name ? tool.name.toLowerCase().replace(/[.&\s]+/g, '-') : 'unknown',
         }));
         setAllTools(toolsWithId);
       });

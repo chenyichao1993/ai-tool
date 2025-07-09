@@ -9,6 +9,14 @@ interface Tool {
   screenshot?: string;
 }
 
+function slugifyToolName(name: string) {
+  return name
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[.\s]+/g, '-')      // 点和空格都变成 -
+    .replace(/[^a-z0-9-]/g, '');  // 只保留小写字母、数字、-
+}
+
 const ToolCard = ({ tool }: { tool: Tool }) => {
   const descRef = useRef<HTMLParagraphElement>(null);
   const [isClamped, setIsClamped] = useState(false);
@@ -42,10 +50,13 @@ const ToolCard = ({ tool }: { tool: Tool }) => {
     setTooltipPos(null);
   };
 
+  // 所有跳转都用统一 slugify 规则
+  const toolSlug = slugifyToolName(tool.name);
+
   return (
     <div
       className="group relative block bg-white dark:bg-gray-800 border-2 border-gray-300 shadow-lg rounded-xl max-w-sm w-full mx-auto mb-2 overflow-hidden transition-shadow duration-300 hover:shadow-xl cursor-pointer md:border md:border-gray-200 md:shadow-lg md:rounded-lg md:max-w-full md:mx-0 md:mb-0"
-      onClick={() => window.open(`/tools/${tool.id}`, '_blank')}
+      onClick={() => window.open(`/tools/${toolSlug}`, '_blank')}
     >
       <a
         href={tool.websiteUrl}

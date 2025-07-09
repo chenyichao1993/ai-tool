@@ -54,7 +54,7 @@ export default function Home() {
         // 为每个工具自动生成id字段
         const toolsWithId = data.map((tool: any) => ({
           ...tool,
-          id: tool.name ? tool.name.toLowerCase().replace(/\s+/g, '-') : 'unknown'
+          id: tool.name ? tool.name.toLowerCase().replace(/[.&\s]+/g, '-') : 'unknown'
         }));
         setTools(toolsWithId);
         setLoading(false);

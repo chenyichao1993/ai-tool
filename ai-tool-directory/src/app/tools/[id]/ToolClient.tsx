@@ -43,8 +43,8 @@ function slugifyToolName(name: string) {
   return name
     .toLowerCase()
     .replace(/&/g, 'and')
-    .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9-]/g, '');
+    .replace(/[.\s]+/g, '-')      // 点和空格都变成 -
+    .replace(/[^a-z0-9-]/g, '');  // 只保留小写字母、数字、-
 }
 
 function slugifyCategory(category: string) {
