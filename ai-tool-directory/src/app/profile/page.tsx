@@ -40,7 +40,6 @@ function formatDate(iso: string) {
 
 export default function ProfilePage() {
   const [user, setUser] = useState<any>(null);
-  const router = useRouter();
   const [hover, setHover] = useState(false);
 
   useEffect(() => {
@@ -61,14 +60,14 @@ export default function ProfilePage() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.replace('/');
+    window.location.href = '/';
   };
 
   const btnStyle = {
     margin: '12px 0 18px 0',
     padding: '8px 24px',
     borderRadius: 8,
-    background: hover ? '#f5f5f5' : '#fff',
+    background: '#fff',
     color: '#222',
     border: '1.5px solid #222',
     fontWeight: 500,
@@ -77,8 +76,8 @@ export default function ProfilePage() {
     display: 'flex',
     alignItems: 'center',
     gap: 8,
-    boxShadow: 'none',
-    transition: 'background 0.18s',
+    boxShadow: hover ? '0 2px 8px rgba(0,0,0,0.06)' : 'none',
+    transition: 'box-shadow 0.18s',
     outline: 'none',
   };
 
@@ -122,7 +121,7 @@ export default function ProfilePage() {
           onMouseLeave={() => setHover(false)}
           style={btnStyle}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: 4}}><path d="M9 18l6-6-6-6"/><path d="M21 12H9"/><rect x="3" y="5" width="6" height="14" rx="2"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: 4}}><path d="M17 16l4-4-4-4"/><path d="M21 12H9"/><rect x="3" y="5" width="6" height="14" rx="2"/></svg>
           Logout
         </button>
         {/* 注册时间和ID */}
