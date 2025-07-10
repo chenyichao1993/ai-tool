@@ -27,15 +27,10 @@ export default function LoginPage() {
     setError("");
     try {
       let result;
-      // 临时创建一个带persistSession选项的supabase实例
-      const { createClient } = await import('@supabase/supabase-js');
-      const supabaseUrl = 'https://ufhemmzwllrlygjtkgrl.supabase.co';
-      const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVmaGVtbXp3bGxybHlnanRrZ3JsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE4MDE0NDAsImV4cCI6MjA2NzM3NzQ0MH0.QSF0KsLbzG0HLT-Ps-wNXonWoRuY59kNq2Huuk1BhNg';
-      const tempSupabase = createClient(supabaseUrl, supabaseAnonKey, { auth: { persistSession: rememberMe } });
       if (isLogin) {
-        result = await tempSupabase.auth.signInWithPassword({ email, password });
+        result = await supabase.auth.signInWithPassword({ email, password });
       } else {
-        result = await tempSupabase.auth.signUp({ email, password });
+        result = await supabase.auth.signUp({ email, password });
       }
       if (result.error) {
         setError('Invalid email or password. Please check and try again.');

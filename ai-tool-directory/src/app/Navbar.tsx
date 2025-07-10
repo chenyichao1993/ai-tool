@@ -36,6 +36,10 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    console.log('当前user:', user);
+  }, [user]);
+
+  useEffect(() => {
     if (!showLang) return;
     function handleClickOutside(e: MouseEvent) {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
@@ -82,7 +86,7 @@ export default function Navbar() {
               </div>
               {userMenuOpen && (
                 <div style={{ position: 'absolute', right: 0, top: 36, background: '#fff', border: '1px solid #eee', borderRadius: 6, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', minWidth: 120, zIndex: 100 }}>
-                  <Link href="/profile" className={styles.link} style={{ display: 'block', padding: 10, textAlign: 'left' }} onClick={()=>setUserMenuOpen(false)}>
+                  <Link href="/profile" className={styles.link} style={{ display: 'block', padding: 10, textAlign: 'left' }} onClick={()=>{setUserMenuOpen(false); setMenuOpen(false);}}>
                     {lang === 'en' ? 'Profile' : '个人中心'}
                   </Link>
                   <div style={{ borderTop: '1px solid #eee' }} />
@@ -93,6 +97,7 @@ export default function Navbar() {
                       await supabase.auth.signOut();
                       setUser(null);
                       setUserMenuOpen(false);
+                      setMenuOpen(false);
                       router.refresh();
                     }}
                   >
@@ -136,7 +141,47 @@ export default function Navbar() {
               {lang === 'en' ? 'Submit Tool' : '提交工具'}
             </Link>
             <div className={styles.loginLangWrap}>
-              <a className={styles.loginBtn} href="/login" onClick={e => { e.preventDefault(); setMenuOpen(false); router.push('/login'); }}>{lang === 'en' ? 'Login' : '登录'}</a>
+              {user ? (
+                <div style={{ position: 'relative' }}>
+                  <div
+                    className={styles.loginBtn}
+                    style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', minWidth: 40 }}
+                    onClick={() => setUserMenuOpen(v => !v)}
+                  >
+                    {user.user_metadata?.avatar_url ? (
+                      <img src={user.user_metadata.avatar_url} alt="avatar" style={{ width: 28, height: 28, borderRadius: '50%', marginRight: 8 }} />
+                    ) : (
+                      <span style={{ fontWeight: 700, marginRight: 8 }}>
+                        {user.user_metadata?.full_name || user.email?.split('@')[0] || 'User'}
+                      </span>
+                    )}
+                    ▼
+                  </div>
+                  {userMenuOpen && (
+                    <div style={{ position: 'absolute', right: 0, top: 36, background: '#fff', border: '1px solid #eee', borderRadius: 6, boxShadow: '0 2px 8px rgba(0,0,0,0.08)', minWidth: 120, zIndex: 100 }}>
+                      <Link href="/profile" className={styles.link} style={{ display: 'block', padding: 10, textAlign: 'left' }} onClick={()=>{setUserMenuOpen(false); setMenuOpen(false);}}>
+                        {lang === 'en' ? 'Profile' : '个人中心'}
+                      </Link>
+                      <div style={{ borderTop: '1px solid #eee' }} />
+                      <div
+                        className={styles.link}
+                        style={{ display: 'block', padding: 10, textAlign: 'left', cursor: 'pointer' }}
+                        onClick={async () => {
+                          await supabase.auth.signOut();
+                          setUser(null);
+                          setUserMenuOpen(false);
+                          setMenuOpen(false);
+                          router.refresh();
+                        }}
+                      >
+                        {lang === 'en' ? 'Logout' : '退出登录'}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <a className={styles.loginBtn} href="/login" onClick={e => { e.preventDefault(); setMenuOpen(false); router.push('/login'); }}>{lang === 'en' ? 'Login' : '登录'}</a>
+              )}
               <div className={styles.langSwitcher} onClick={handleLangClick} tabIndex={0} ref={langRef}>
                 <span className={styles.langIcon} role="img" aria-label="language">🌐</span>
                 <span className={styles.langText}>{lang === 'en' ? 'EN' : '中文'}</span>
