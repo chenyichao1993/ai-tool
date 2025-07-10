@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
+import { useRouter } from 'next/navigation';
 
 function getInitial(user: any) {
   // 优先昵称首字符，否则邮箱首字符
@@ -23,8 +24,24 @@ function getDisplayName(user: any) {
   return 'User';
 }
 
+function formatDate(iso: string) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleString(undefined, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false
+  }).replace(/\//g, '-');
+}
+
 export default function ProfilePage() {
   const [user, setUser] = useState<any>(null);
+  const router = useRouter();
+  const [hover, setHover] = useState(false);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -41,6 +58,14 @@ export default function ProfilePage() {
   const email = user.email;
   const createdAt = user.created_at;
   const userId = user.id;
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    router.push('/');
+  };
+
+  const btnBg = hover ? '#6246ea' : '#7b61ff';
+  const btnShadow = hover ? '0 2px 8px rgba(123,97,255,0.12)' : 'none';
 
   return (
     <div style={{ minHeight: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -76,10 +101,33 @@ export default function ProfilePage() {
         {/* 邮箱 */}
         <div style={{ fontSize: 16, color: '#888', marginBottom: 18, textAlign: 'center' }}>{email}</div>
         {/* 登出按钮（可选） */}
-        {/* <button style={{ margin: '12px 0 18px 0', padding: '8px 24px', borderRadius: 6, background: '#7b61ff', color: '#fff', border: 'none', fontWeight: 600, fontSize: 16, cursor: 'pointer' }}>Logout</button> */}
+        <button
+          onClick={handleLogout}
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          style={{
+            margin: '12px 0 18px 0',
+            padding: '10px 32px',
+            borderRadius: 24,
+            background: btnBg,
+            color: '#fff',
+            border: 'none',
+            fontWeight: 600,
+            fontSize: 18,
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            boxShadow: btnShadow,
+            transition: 'background 0.2s, box-shadow 0.2s',
+          }}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: 4}}><path d="M9 18l6-6-6-6"/><path d="M21 12H9"/><path d="M3 12h2"/></svg>
+          Logout
+        </button>
         {/* 注册时间和ID */}
         <div style={{ width: '100%', marginTop: 18, fontSize: 13, color: '#aaa', textAlign: 'left', wordBreak: 'break-all' }}>
-          <div><b>Created At:</b> {createdAt}</div>
+          <div><b>Created At:</b> {formatDate(createdAt)}</div>
           <div><b>User ID:</b> {userId}</div>
         </div>
       </div>
