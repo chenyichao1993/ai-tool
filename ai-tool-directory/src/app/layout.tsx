@@ -5,6 +5,9 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import localFont from 'next/font/local';
 import CleanHash from "./components/CleanHash";
+import { useEffect } from "react";
+import { supabase } from "./supabaseClient";
+import { useRouter } from "next/navigation";
 
 const geist = localFont({
   src: [
@@ -30,31 +33,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      const access_token = url.searchParams.get("access_token");
+      const refresh_token = url.searchParams.get("refresh_token");
+      const token = url.searchParams.get("token");
+      if (access_token && refresh_token) {
+        supabase.auth.setSession({ access_token, refresh_token }).then(() => {
+          router.refresh();
+          router.push("/");
+        });
+      } else if (token) {
+        if (supabase.auth.exchangeCodeForSession) {
+          supabase.auth.exchangeCodeForSession(token).then(() => {
+            router.refresh();
+            router.push("/");
+          });
+        }
+      }
+    }
+  }, []);
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}>
-      <head>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            if (window.location.hash && window.location.hash.includes('access_token')) {
-              history.replaceState(null, '', window.location.pathname + window.location.search);
-            }
-          `
-        }} />
-        {/* ... existing code ... */}
-      </head>
-      <body>
-        <CleanHash />
-        <Navbar />
-        {/* 其他内容 */}
-        {children}
-        <BackToTop />
-        <Footer />
-      </body>
-    </html>
-  );
-}
+    <html lang="en" className={`
