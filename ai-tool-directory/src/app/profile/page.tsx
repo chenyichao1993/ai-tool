@@ -61,11 +61,26 @@ export default function ProfilePage() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    router.push('/');
+    router.replace('/');
   };
 
-  const btnBg = hover ? '#6246ea' : '#7b61ff';
-  const btnShadow = hover ? '0 2px 8px rgba(123,97,255,0.12)' : 'none';
+  const btnStyle = {
+    margin: '12px 0 18px 0',
+    padding: '8px 24px',
+    borderRadius: 8,
+    background: hover ? '#f5f5f5' : '#fff',
+    color: '#222',
+    border: '1.5px solid #222',
+    fontWeight: 500,
+    fontSize: 16,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+    boxShadow: 'none',
+    transition: 'background 0.18s',
+    outline: 'none',
+  };
 
   return (
     <div style={{ minHeight: '60vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -105,24 +120,9 @@ export default function ProfilePage() {
           onClick={handleLogout}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
-          style={{
-            margin: '12px 0 18px 0',
-            padding: '10px 32px',
-            borderRadius: 24,
-            background: btnBg,
-            color: '#fff',
-            border: 'none',
-            fontWeight: 600,
-            fontSize: 18,
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            boxShadow: btnShadow,
-            transition: 'background 0.2s, box-shadow 0.2s',
-          }}
+          style={btnStyle}
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: 4}}><path d="M9 18l6-6-6-6"/><path d="M21 12H9"/><path d="M3 12h2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#222" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: 4}}><path d="M9 18l6-6-6-6"/><path d="M21 12H9"/><rect x="3" y="5" width="6" height="14" rx="2"/></svg>
           Logout
         </button>
         {/* 注册时间和ID */}
