@@ -57,4 +57,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     }
   }, []);
   return (
-    <html lang="en" className={`
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`}> 
+      <head>
+        {/* 你可以在这里添加meta、title等 */}
+      </head>
+      <body>
+        <CleanHash />
+        <Navbar />
+        {children}
+        <BackToTop />
+        <Footer />
+      </body>
+    </html>
+  );
+}
