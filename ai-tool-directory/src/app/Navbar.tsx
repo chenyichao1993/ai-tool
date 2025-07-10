@@ -98,7 +98,7 @@ export default function Navbar() {
                       setUser(null);
                       setUserMenuOpen(false);
                       setMenuOpen(false);
-                      router.refresh();
+                      window.location.href = '/';
                     }}
                   >
                     {lang === 'en' ? 'Logout' : '退出登录'}
@@ -171,7 +171,7 @@ export default function Navbar() {
                           setUser(null);
                           setUserMenuOpen(false);
                           setMenuOpen(false);
-                          router.refresh();
+                          window.location.href = '/';
                         }}
                       >
                         {lang === 'en' ? 'Logout' : '退出登录'}
