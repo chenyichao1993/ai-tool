@@ -29,12 +29,25 @@ export default function LoginPage() {
       let result;
       if (isLogin) {
         result = await supabase.auth.signInWithPassword({ email, password });
+        if (result.error) {
+          setError('Invalid email or password. Please check and try again.');
+          setLoading(false);
+          return;
+        }
+        router.refresh();
+        router.push("/");
       } else {
         result = await supabase.auth.signUp({ email, password });
-      }
-      if (result.error) {
-        setError('Invalid email or password. Please check and try again.');
-      } else {
+        if (result.error) {
+          setError(result.error.message || 'Sign up failed. Please try again.');
+          setLoading(false);
+          return;
+        }
+        if (!result.data.session) {
+          setError('Sign up successful! Please check your email to activate your account.');
+          setLoading(false);
+          return;
+        }
         router.refresh();
         router.push("/");
       }
