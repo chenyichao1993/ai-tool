@@ -3,6 +3,12 @@ import { useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import { useRouter } from "next/navigation";
 
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 export default function AutoLoginClient() {
   const router = useRouter();
   useEffect(() => {
