@@ -36,6 +36,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`}> 
       <head>
         {/* 你可以在这里添加meta、title等 */}
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3YZDFWD1MK"></script>
+        <script dangerouslySetInnerHTML={{__html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-3YZDFWD1MK');
+        `}} />
       </head>
       <body>
         <AutoLoginClient />

@@ -26,5 +26,27 @@ export default function AutoLoginClient() {
       }
     }
   }, []);
+
+  // Google Analytics 路由变化追踪
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const handleRouteChange = () => {
+      if (window.gtag) {
+        window.gtag('config', 'G-3YZDFWD1MK', {
+          page_path: window.location.pathname + window.location.search,
+        });
+      }
+    };
+    window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('pushState', handleRouteChange);
+    window.addEventListener('replaceState', handleRouteChange);
+    // Next.js 13+ App Router下，页面切换时popstate会触发
+    return () => {
+      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('pushState', handleRouteChange);
+      window.removeEventListener('replaceState', handleRouteChange);
+    };
+  }, []);
+
   return null;
 } 
