@@ -6,6 +6,16 @@ import { useRouter } from "next/navigation";
 
 const PRIMARY_COLOR = "#7b61ff";
 
+// 登录失败限制配置
+const MAX_LOGIN_ATTEMPTS = 5;
+const LOCKOUT_DURATION = 15 * 60 * 1000; // 15分钟
+
+interface LoginAttempts {
+  count: number;
+  lastAttempt: number;
+  lockedUntil?: number;
+}
+
 export default function LoginPage() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
@@ -17,29 +27,129 @@ export default function LoginPage() {
   const [resetMsg, setResetMsg] = useState("");
   const [resetLoading, setResetLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
+  const [loginAttempts, setLoginAttempts] = useState<LoginAttempts>({ count: 0, lastAttempt: 0 });
+  const [isLocked, setIsLocked] = useState(false);
+  const [lockoutTimeLeft, setLockoutTimeLeft] = useState(0);
   const router = useRouter();
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  // 检查登录失败状态
+  useEffect(() => {
+    const stored = localStorage.getItem('loginAttempts');
+    if (stored) {
+      const attempts: LoginAttempts = JSON.parse(stored);
+      const now = Date.now();
+      
+      // 检查是否在锁定期内
+      if (attempts.lockedUntil && now < attempts.lockedUntil) {
+        setIsLocked(true);
+        setLockoutTimeLeft(attempts.lockedUntil - now);
+        setLoginAttempts(attempts);
+      } else if (attempts.lockedUntil && now >= attempts.lockedUntil) {
+        // 锁定期已过，重置
+        localStorage.removeItem('loginAttempts');
+        setIsLocked(false);
+        setLoginAttempts({ count: 0, lastAttempt: 0 });
+      } else {
+        setLoginAttempts(attempts);
+      }
+    }
+  }, []);
+
+  // 更新锁定时间倒计时
+  useEffect(() => {
+    if (isLocked && lockoutTimeLeft > 0) {
+      const timer = setInterval(() => {
+        setLockoutTimeLeft(prev => {
+          if (prev <= 1000) {
+            setIsLocked(false);
+            localStorage.removeItem('loginAttempts');
+            return 0;
+          }
+          return prev - 1000;
+        });
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [isLocked, lockoutTimeLeft]);
+
+  // 记录登录失败
+  const recordLoginFailure = () => {
+    const newAttempts: LoginAttempts = {
+      count: loginAttempts.count + 1,
+      lastAttempt: Date.now()
+    };
+    
+    if (newAttempts.count >= MAX_LOGIN_ATTEMPTS) {
+      newAttempts.lockedUntil = Date.now() + LOCKOUT_DURATION;
+      setIsLocked(true);
+      setLockoutTimeLeft(LOCKOUT_DURATION);
+    }
+    
+    setLoginAttempts(newAttempts);
+    localStorage.setItem('loginAttempts', JSON.stringify(newAttempts));
+  };
+
+  // 重置登录失败记录
+  const resetLoginAttempts = () => {
+    localStorage.removeItem('loginAttempts');
+    setLoginAttempts({ count: 0, lastAttempt: 0 });
+    setIsLocked(false);
+    setLockoutTimeLeft(0);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // 检查是否被锁定
+    if (isLocked) {
+      const minutes = Math.floor(lockoutTimeLeft / 60000);
+      const seconds = Math.floor((lockoutTimeLeft % 60000) / 1000);
+      setError(`Account temporarily locked. Please try again in ${minutes}:${seconds.toString().padStart(2, '0')}`);
+      return;
+    }
+    
     setLoading(true);
     setError("");
+    
+    // 输入验证
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address.');
+      setLoading(false);
+      return;
+    }
+    
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters long.');
+      setLoading(false);
+      return;
+    }
+    
     try {
       let result;
       if (isLogin) {
         result = await supabase.auth.signInWithPassword({ email, password });
         if (result.error) {
-          setError('Invalid email or password. Please check and try again.');
+          recordLoginFailure();
+          const remainingAttempts = MAX_LOGIN_ATTEMPTS - loginAttempts.count - 1;
+          if (remainingAttempts > 0) {
+            setError(`Invalid email or password. ${remainingAttempts} attempts remaining.`);
+          } else {
+            setError('Account locked due to too many failed attempts. Please try again in 15 minutes.');
+          }
           setLoading(false);
           return;
         }
+        // 登录成功，重置失败记录
+        resetLoginAttempts();
         router.refresh();
         router.push("/");
       } else {
         result = await supabase.auth.signUp({ email, password });
         if (result.error) {
-          setError(result.error.message || 'Sign up failed. Please try again.');
+          setError('Sign up failed. Please try again.');
           setLoading(false);
           return;
         }
@@ -52,13 +162,20 @@ export default function LoginPage() {
         router.push("/");
       }
     } catch (err: any) {
-      setError("Unknown error. Please try again later.");
+      setError("An error occurred. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   const handleGoogle = async () => {
+    if (isLocked) {
+      const minutes = Math.floor(lockoutTimeLeft / 60000);
+      const seconds = Math.floor((lockoutTimeLeft % 60000) / 1000);
+      setError(`Account temporarily locked. Please try again in ${minutes}:${seconds.toString().padStart(2, '0')}`);
+      return;
+    }
+    
     setLoading(true);
     setError("");
     const { error } = await supabase.auth.signInWithOAuth({ provider: "google" });
@@ -133,7 +250,7 @@ export default function LoginPage() {
           <h1 style={{ fontWeight: 700, fontSize: 28, margin: "16px 0 0 0", color: PRIMARY_COLOR }}>Toolaize</h1>
         </div>
         <h2 style={{ textAlign: "center", fontWeight: 600, fontSize: 22, marginBottom: 24 }}>{isLogin ? "Sign in to your account" : "Sign up for an account"}</h2>
-        <button onClick={handleGoogle} disabled={loading} style={{ width: "100%", background: "#fff", border: `1px solid ${PRIMARY_COLOR}`, color: PRIMARY_COLOR, borderRadius: 6, padding: 10, fontWeight: 600, marginBottom: 18, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, cursor: "pointer" }}>
+        <button onClick={handleGoogle} disabled={loading || isLocked} style={{ width: "100%", background: "#fff", border: `1px solid ${PRIMARY_COLOR}`, color: PRIMARY_COLOR, borderRadius: 6, padding: 10, fontWeight: 600, marginBottom: 18, display: "flex", alignItems: "center", justifyContent: "center", gap: 8, cursor: "pointer", opacity: isLocked ? 0.5 : 1 }}>
           <img src="/social/google.png" alt="Google" width={22} height={22} style={{display:'inline'}} />
           Continue with Google
         </button>
@@ -146,7 +263,8 @@ export default function LoginPage() {
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
-            style={{ padding: 10, borderRadius: 6, border: "1px solid #ddd", fontSize: 16 }}
+            disabled={isLocked}
+            style={{ padding: 10, borderRadius: 6, border: "1px solid #ddd", fontSize: 16, opacity: isLocked ? 0.5 : 1 }}
           />
           <input
             ref={passwordRef}
@@ -155,19 +273,21 @@ export default function LoginPage() {
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
-            style={{ padding: 10, borderRadius: 6, border: "1px solid #ddd", fontSize: 16 }}
+            disabled={isLocked}
+            style={{ padding: 10, borderRadius: 6, border: "1px solid #ddd", fontSize: 16, opacity: isLocked ? 0.5 : 1 }}
           />
           <label style={{ display: 'flex', alignItems: 'center', fontSize: 14, marginBottom: 4 }}>
             <input
               type="checkbox"
               checked={rememberMe}
               onChange={e => setRememberMe(e.target.checked)}
+              disabled={isLocked}
               style={{ marginRight: 6 }}
             />
             Remember me
           </label>
           {error && <div style={{ color: "red", fontSize: 14 }}>{error}</div>}
-          <button type="submit" disabled={loading} style={{ padding: 12, borderRadius: 6, background: PRIMARY_COLOR, color: "#fff", border: "none", fontWeight: 700, fontSize: 16, marginTop: 4 }}>
+          <button type="submit" disabled={loading || isLocked} style={{ padding: 12, borderRadius: 6, background: isLocked ? "#ccc" : PRIMARY_COLOR, color: "#fff", border: "none", fontWeight: 700, fontSize: 16, marginTop: 4, cursor: isLocked ? "not-allowed" : "pointer" }}>
             {loading ? "Processing..." : isLogin ? "Sign In" : "Sign Up"}
           </button>
         </form>
@@ -205,4 +325,4 @@ export default function LoginPage() {
       )}
     </div>
   );
-} 
+}
