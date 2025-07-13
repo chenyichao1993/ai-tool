@@ -19,13 +19,13 @@ export default function AutoLoginClient() {
       const token = url.searchParams.get("token");
       if (access_token && refresh_token) {
         supabase.auth.setSession({ access_token, refresh_token }).then(() => {
-          router.refresh();
+          // 移除 router.refresh() 避免无限重渲染
           router.push("/");
         });
       } else if (token) {
         if (supabase.auth.exchangeCodeForSession) {
           supabase.auth.exchangeCodeForSession(token).then(() => {
-            router.refresh();
+            // 移除 router.refresh() 避免无限重渲染
             router.push("/");
           });
         }

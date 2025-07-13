@@ -98,7 +98,7 @@ function syncCategoriesMeta() {
   const emojiPool = [
     '📝', '🎨', '🎬', '🎵', '💼', '💻', '🔍', '📦', '🧠', '🌐', '🤖', '📊', '🗂️', '🛠️', '📚', '🧩', '🧰', '🗃️', '📈', '🧾', '🗒️', '📅', '🧮', '🧑‍💻', '🧑‍🏫', '🧑‍🔬', '🧑‍🎨', '🧑‍💼', '🧑‍🚀', '🧑‍⚖️', '🧑‍🍳', '🧑‍🔧', '🧑‍🌾', '🧑‍🎤', '🧑‍🎓', '🧑‍✈️', '🧑‍🚒', '🧑‍🚗'
   ];
-  function genDesc(category) {
+  function genDesc(category: string) {
     return `AI tools for ${category.toLowerCase()}.`;
   }
   const tools = JSON.parse(fs.readFileSync(aiToolPath, 'utf-8'));
@@ -110,11 +110,11 @@ function syncCategoriesMeta() {
       categories.push(tool.category);
     }
   }
-  const meta = {};
+  const meta: Record<string, { icon: string; desc: string }> = {};
   let emojiIdx = 0;
   for (const cat of categories) {
     let icon = emojiPool[emojiIdx % emojiPool.length];
-    while (Object.values(meta).some(m => m.icon === icon)) {
+    while (Object.values(meta).some((m: { icon: string; desc: string }) => m.icon === icon)) {
       emojiIdx++;
       icon = emojiPool[emojiIdx % emojiPool.length];
     }

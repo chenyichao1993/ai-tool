@@ -35,9 +35,10 @@ export default function Navbar() {
     return () => { listener?.subscription?.unsubscribe(); };
   }, []);
 
-  useEffect(() => {
-    console.log('当前user:', user);
-  }, [user]);
+  // 移除可能导致无限重渲染的 console.log
+  // useEffect(() => {
+  //   console.log('当前user:', user);
+  // }, [user]);
 
   useEffect(() => {
     if (!showLang) return;
@@ -107,8 +108,8 @@ export default function Navbar() {
               )}
             </div>
           ) : (
-            <Link href="/login" legacyBehavior>
-              <a className={styles.loginBtn}>{lang === 'en' ? 'Login' : '登录'}</a>
+            <Link href="/login" className={styles.loginBtn}>
+              {lang === 'en' ? 'Login' : '登录'}
             </Link>
           )}
           <div className={styles.langSwitcher} onClick={handleLangClick} tabIndex={0} ref={langRef}>

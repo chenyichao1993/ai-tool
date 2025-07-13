@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 export default function BatchImportPage() {
   const [file, setFile] = useState<File | null>(null);
-  const [format, setFormat] = useState<'csv' | 'json'>('csv');
+  const [format, setFormat] = useState<'csv' | 'json'>('json');
   const [isUploading, setIsUploading] = useState(false);
   const [result, setResult] = useState<{success: boolean, message: string, details?: { name: string, status: 'success' | 'duplicate' | 'failed', reason?: string }[]} | null>(null);
 

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useMemo } from 'react';
+import Fuse from 'fuse.js';
 
 // Tool type definition
 interface Tool {
@@ -34,6 +35,31 @@ function slugifyCategory(category: string) {
     .replace(/[^a-z0-9-]/g, '');
 }
 
+// 同义词表，可根据实际需求扩展
+const SYNONYMS: Record<string, string[]> = {
+  'no code': ['nocode', 'no-code', 'no_code'],
+  'ai': ['artificial intelligence'],
+  'auto': ['automation', 'automate'],
+  'chatbot': ['virtual assistant', 'conversational ai'],
+  // ...可继续扩展
+};
+
+function expandSynonyms(input: string): string[] {
+  const normalized = input.trim().toLowerCase();
+  let expanded = [normalized];
+  Object.entries(SYNONYMS).forEach(([key, arr]) => {
+    if (normalized.includes(key)) {
+      expanded = expanded.concat(arr);
+    }
+    arr.forEach(syn => {
+      if (normalized.includes(syn)) {
+        expanded.push(key);
+      }
+    });
+  });
+  return Array.from(new Set(expanded));
+}
+
 export default function Home() {
   const [tools, setTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,6 +69,8 @@ export default function Home() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showTooltip, setShowTooltip] = useState<{ [idx: string]: boolean }>({});
   const [showAllMap, setShowAllMap] = useState<{ [cat: string]: boolean }>({});
+  const [autoComplete, setAutoComplete] = useState<string[]>([]);
+  const fuseRef = useRef<any>(null);
 
   useEffect(() => {
     fetch('/AI%20tool.json')
@@ -51,12 +79,27 @@ export default function Home() {
         return res.json();
       })
       .then((data) => {
-        // 为每个工具自动生成id字段
         const toolsWithId = data.map((tool: any) => ({
           ...tool,
           id: tool.name ? tool.name.toLowerCase().replace(/[.&\s]+/g, '-') : 'unknown'
         }));
         setTools(toolsWithId);
+        // 初始化 fuse
+        fuseRef.current = new Fuse(toolsWithId, {
+          keys: [
+            'name',
+            'category',
+            'description',
+            'tags',
+          ],
+          threshold: 0.38, // 模糊度，越低越严格
+          ignoreLocation: true,
+          minMatchCharLength: 2,
+          useExtendedSearch: true,
+          includeScore: true,
+          shouldSort: true,
+          findAllMatches: true,
+        });
         setLoading(false);
       })
       .catch((err) => {
@@ -68,21 +111,57 @@ export default function Home() {
   // 获取所有分类
   const categories = Array.from(new Set(tools.map(t => t.category))).filter(Boolean);
 
-  // 搜索过滤逻辑
-  const searchLower = search.trim().toLowerCase();
-  let filteredTools: Tool[];
-  if (searchLower) {
-    // 全站搜索，包含tags
-    filteredTools = tools.filter(t =>
-      t.name.toLowerCase().includes(searchLower) ||
-      t.category.toLowerCase().includes(searchLower) ||
-      t.description.toLowerCase().includes(searchLower) ||
-      (Array.isArray((t as any).tags) && (t as any).tags.join(' ').toLowerCase().includes(searchLower))
-    );
-  } else {
-    // 按分类筛选
-    filteredTools = selectedCategory === 'All' ? tools : tools.filter(t => t.category === selectedCategory);
+  // 搜索归一化处理
+  function normalizeInput(str: string) {
+    return str.toLowerCase().replace(/[\s_]+/g, '-').replace(/-+/g, '-');
   }
+
+  // 搜索过滤逻辑（fuse.js 替换原有 filter）
+  const filteredTools: Tool[] = useMemo(() => {
+    if (search.trim()) {
+      // 同义词扩展
+      const expanded = expandSynonyms(search);
+      // fuse.js 多关键词分词搜索
+      let fuseResults: any[] = [];
+      expanded.forEach(q => {
+        if (fuseRef.current) {
+          const results = fuseRef.current.search(q);
+          fuseResults = fuseResults.concat(results);
+        }
+      });
+      // 去重并按分数排序
+      const uniqueTools: Record<string, { item: Tool; score: number }> = {};
+      fuseResults.forEach(r => {
+        if (!uniqueTools[r.item.id] || r.score < uniqueTools[r.item.id].score) {
+          uniqueTools[r.item.id] = { item: r.item, score: r.score };
+        }
+      });
+      return Object.values(uniqueTools).sort((a, b) => a.score - b.score).map(r => r.item);
+    } else {
+      return selectedCategory === 'All' ? tools : tools.filter(t => t.category === selectedCategory);
+    }
+  }, [search, selectedCategory, tools]);
+
+  // 自动补全建议
+  useEffect(() => {
+    if (search.trim()) {
+      const expanded = expandSynonyms(search);
+      let fuseResults: any[] = [];
+      expanded.forEach(q => {
+        if (fuseRef.current) {
+          const results = fuseRef.current.search(q);
+          fuseResults = fuseResults.concat(results);
+        }
+      });
+      const suggestions = fuseResults
+        .map(r => r.item.name)
+        .filter((v, i, arr) => arr.indexOf(v) === i && v.toLowerCase().includes(search.toLowerCase()))
+        .slice(0, 5);
+      setAutoComplete(suggestions);
+    } else {
+      setAutoComplete([]);
+    }
+  }, [search]);
 
   // 工具分组（基于过滤后的工具）
   const groupedTools: { [cat: string]: Tool[] } = {};
@@ -179,14 +258,15 @@ export default function Home() {
           {/* 搜索框 */}
           <div className="flex justify-center mb-6">
             <div className="relative w-full max-w-3xl">
-            <input
-              type="text"
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              placeholder="Search AI tools by name, category or description..."
+              <input
+                type="text"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search AI tools by name, category or description..."
                 className="w-full pr-16 pl-4 py-2 border border-gray-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 text-base"
                 style={{ height: 44 }}
-            />
+                autoComplete="off"
+              />
               <span
                 className="absolute top-1/2 right-2 -translate-y-1/2 bg-[#6C47FF] flex items-center justify-center shadow"
                 style={{ width: 40, height: 40, borderRadius: '50%', boxShadow: '0 2px 8px rgba(108,71,255,0.08)', cursor: 'pointer' }}
@@ -196,6 +276,20 @@ export default function Home() {
                   <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="white" strokeWidth="2" strokeLinecap="round" />
                 </svg>
               </span>
+              {/* 自动补全建议 */}
+              {autoComplete.length > 0 && (
+                <ul className="absolute left-0 right-0 top-14 bg-white border border-gray-200 rounded shadow z-10">
+                  {autoComplete.map((s, i) => (
+                    <li
+                      key={s}
+                      className="px-4 py-2 hover:bg-indigo-50 cursor-pointer text-gray-700"
+                      onClick={() => { setSearch(s); setAutoComplete([]); }}
+                    >
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
           {/* 分割线 */}
@@ -204,7 +298,7 @@ export default function Home() {
           {loading && <div className="text-center text-gray-500">Loading tools...</div>}
           {error && <div className="text-center text-red-500">{error}</div>}
           {/* 分类详情页 or 首页分组瀑布流 */}
-          {searchLower ? (
+          {search.trim() ? (
             filteredTools.length === 0 ? (
               <div className="flex items-center justify-center w-full" style={{ minHeight: '220px' }}>
                 <span className="text-gray-400 text-xl">No tools found. Please try another keyword.</span>

@@ -13,7 +13,9 @@
     "import-tools": "node batch-import.js"
   },
   "dependencies": {
+    "chokidar": "^4.0.3",
     "firebase": "^11.9.1",
+    "fuse.js": "^7.1.0",
     "i18next": "^25.2.1",
     "next": "15.3.3",
     "next-i18next": "^15.4.2",

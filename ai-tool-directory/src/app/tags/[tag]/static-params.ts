@@ -1,43 +1,20 @@
 import fs from 'fs';
 import path from 'path';
 
-function slugifyTagForUrl(tag: string) {
-  // 取括号前主干
-  let main = tag.split('(')[0].trim();
-  // 只保留字母、数字、空格和“-”
-  main = main.replace(/[^a-zA-Z0-9\- ]/g, '');
-  // 多个空格和“-”都变成“-”，避免连续“-”
-  main = main.replace(/[\s\-]+/g, '-');
-  // 去除首尾“-”
-  main = main.replace(/^\-+|\-+$/g, '');
-  // 全部小写
-  return main.toLowerCase();
-}
-
-function getTagMainPart(tag: string) {
-  let main = tag.split('(')[0].trim();
-  main = main.replace(/[^a-zA-Z0-9\- ]/g, '');
-  main = main.replace(/\s+/g, ' ').trim();
-  main = main.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-  return main;
-}
-
-function smartTagMainPart(tag: string) {
-  let main = tag.split('(')[0].trim();
-  // 先将所有分隔符替换为空格
-  main = main.replace(/[-/_]+/g, ' ');
-  // 驼峰转空格
-  main = main.replace(/([a-z])([A-Z])/g, '$1 $2');
-  // 合并多余空格
-  main = main.replace(/\s+/g, ' ').trim();
-  // 首字母大写
-  let words = main.split(' ');
-  words = words.filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase());
-  return words.join(' ');
-}
-
-function smartTagSlug(tag: string) {
-  return smartTagMainPart(tag).toLowerCase().replace(/\s+/g, '-');
+function slugifyTag(tag: string) {
+  // 首先处理包含括号的tag，只保留括号前的主要部分
+  let processedTag = tag;
+  if (tag.includes('(')) {
+    processedTag = tag.split('(')[0].trim();
+  }
+  
+  return processedTag
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, ' ')  // 将特殊字符替换为空格
+    .replace(/[\s_]+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 export function getAllTagParams() {
@@ -45,10 +22,20 @@ export function getAllTagParams() {
   const fileData = fs.readFileSync(filePath, 'utf-8');
   const tools = JSON.parse(fileData);
   const tagSet = new Set<string>();
+  const debugPairs: { raw: string, slug: string }[] = [];
   tools.forEach((tool: any) => {
     if (Array.isArray(tool.tags)) {
-      tool.tags.forEach((tag: string) => tagSet.add(smartTagSlug(tag)));
+      tool.tags.forEach((tag: any) => {
+        if (typeof tag === 'string' && tag.trim()) {
+          const slug = slugifyTag(tag);
+          tagSet.add(slug);
+          debugPairs.push({ raw: tag, slug });
+        }
+      });
     }
   });
-  return Array.from(tagSet).map(tag => ({ tag }));
+  const allTags = Array.from(tagSet).filter(Boolean);
+  console.log('所有tag原始值和slug：', debugPairs);
+  console.log('所有tag参数slug：', allTags);
+  return allTags.map(tag => ({ tag }));
 } 
