@@ -174,9 +174,11 @@ export default function ToolClient(props: { id: string; toolName?: string | null
   };
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopySuccess(true);
-    setTimeout(() => setCopySuccess(false), 2000);
+    if (tool && tool.websiteUrl) {
+      navigator.clipboard.writeText(tool.websiteUrl);
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    }
   };
 
   return (
@@ -454,4 +456,4 @@ export default function ToolClient(props: { id: string; toolName?: string | null
       </div>
     </main>
   );
-} 
+}

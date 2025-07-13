@@ -119,6 +119,58 @@ function saveTools(tools) {
   console.log(`成功保存 ${tools.length} 个工具到 ${outputPath}`);
 }
 
+// 同步分类到categories.json和categories-meta.json
+function syncCategories(tools) {
+  const categoriesPath = path.join(process.cwd(), 'public', 'categories.json');
+  const categoriesMetaPath = path.join(process.cwd(), 'public', 'categories-meta.json');
+  
+  // 提取所有唯一的分类
+  const categories = [...new Set(tools.map(tool => tool.category))];
+  
+  // 为每个分类创建默认的meta信息
+  const categoriesMeta = {};
+  const iconMap = {
+    'AI Writing & Content Generation': '📝',
+    'Image Generation & Design': '🎨',
+    'Video Production & Editing': '🎬',
+    'Audio Processing & Generation': '🎵',
+    'Office Productivity Tools': '💼',
+    'Coding & Development': '💻',
+    'Search & Prompt Engineering': '🔍',
+    'Productivity & Organization': '📦',
+    'Chatbots & Virtual Companions': '🤖'
+  };
+  
+  const descMap = {
+    'AI Writing & Content Generation': 'AI writing, content generation, summarization, and more.',
+    'Image Generation & Design': 'AI drawing, image generation, design assistant, and creative tools.',
+    'Video Production & Editing': 'AI video creation, editing, and production tools.',
+    'Audio Processing & Generation': 'AI audio processing, speech synthesis, and music generation.',
+    'Office Productivity Tools': 'Office automation, productivity, document processing, and more.',
+    'Coding & Development': 'AI coding assistants, code generation, and developer tools.',
+    'Search & Prompt Engineering': 'AI search, prompt engineering, and information retrieval tools.',
+    'Productivity & Organization': 'AI productivity, organization, and workflow management tools.',
+    'Chatbots & Virtual Companions': 'AI chatbots, virtual assistants, and conversational AI tools.'
+  };
+  
+  categories.forEach(category => {
+    categoriesMeta[category] = {
+      icon: iconMap[category] || '🔧',
+      desc: descMap[category] || `AI tools for ${category.toLowerCase()}.`
+    };
+  });
+  
+  // 写入categories.json
+  fs.writeFileSync(categoriesPath, JSON.stringify(categories, null, 2));
+  console.log('✅ categories.json 已自动同步');
+  
+  // 写入categories-meta.json
+  fs.writeFileSync(categoriesMetaPath, JSON.stringify(categoriesMeta, null, 2));
+  console.log('✅ categories-meta.json 已自动同步');
+  
+  console.log(`📊 发现 ${categories.length} 个分类，已自动同步`);
+}
+
 // 主函数
 function main() {
   const args = process.argv.slice(2);
@@ -157,6 +209,9 @@ function main() {
     
     const mergedTools = mergeTools(newTools);
     saveTools(mergedTools);
+    
+    // 自动同步分类
+    syncCategories(mergedTools);
     
     console.log('批量导入完成！');
     

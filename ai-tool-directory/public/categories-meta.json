@@ -1,0 +1,38 @@
+{
+  "AI Writing & Content Generation": {
+    "icon": "📝",
+    "desc": "AI writing, content generation, summarization, and more."
+  },
+  "Image Generation & Design": {
+    "icon": "🎨",
+    "desc": "AI drawing, image generation, design assistant, and creative tools."
+  },
+  "Video Production & Editing": {
+    "icon": "🎬",
+    "desc": "AI video creation, editing, and production tools."
+  },
+  "Audio Processing & Generation": {
+    "icon": "🎵",
+    "desc": "AI audio processing, speech synthesis, and music generation."
+  },
+  "Office Productivity Tools": {
+    "icon": "💼",
+    "desc": "Office automation, productivity, document processing, and more."
+  },
+  "Coding & Development": {
+    "icon": "💻",
+    "desc": "AI coding assistants, code generation, and developer tools."
+  },
+  "Search & Prompt Engineering": {
+    "icon": "🔍",
+    "desc": "AI search, prompt engineering, and information retrieval tools."
+  },
+  "Productivity & Organization": {
+    "icon": "📦",
+    "desc": "AI productivity, organization, and workflow management tools."
+  },
+  "Chatbots & Virtual Companions": {
+    "icon": "🤖",
+    "desc": "AI chatbots, virtual assistants, and conversational AI tools."
+  }
+}

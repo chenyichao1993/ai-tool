@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync-categories": "node sync-categories.js",
+    "watch-categories": "node watch-categories-sync.js --watch",
+    "import-tools": "node batch-import.js"
   },
   "dependencies": {
     "firebase": "^11.9.1",

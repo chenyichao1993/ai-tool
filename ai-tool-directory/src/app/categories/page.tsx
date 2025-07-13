@@ -3,49 +3,6 @@ import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 import Breadcrumbs from "../Breadcrumbs";
 
-const CATEGORY_LIST = [
-  "AI Writing & Content Generation",
-  "Image Generation & Design",
-  "Video Production & Editing",
-  "Audio Processing & Generation",
-  "Office Productivity Tools",
-  "Coding & Development",
-  "Search & Prompt Engineering"
-];
-
-// 分类icon和描述映射
-const categoryMeta: Record<string, { icon: string; desc: string }> = {
-  "AI Writing & Content Generation": {
-    icon: "📝",
-    desc: "AI writing, content generation, summarization, and more."
-  },
-  "Image Generation & Design": {
-    icon: "🎨",
-    desc: "AI drawing, image generation, design assistant, and creative tools."
-  },
-  "Video Production & Editing": {
-    icon: "🎬",
-    desc: "AI video creation, editing, and production tools."
-  },
-  "Audio Processing & Generation": {
-    icon: "🎵",
-    desc: "AI audio processing, speech synthesis, and music generation."
-  },
-  "Office Productivity Tools": {
-    icon: "💼",
-    desc: "Office automation, productivity, document processing, and more."
-  },
-  "Coding & Development": {
-    icon: "💻",
-    desc: "AI coding assistants, code generation, and developer tools."
-  },
-  "Search & Prompt Engineering": {
-    icon: "🔍",
-    desc: "AI search, prompt engineering, and information retrieval tools."
-  }
-};
-
-// 在文件顶部引入 slugifyCategory
 function slugifyCategory(category: string) {
   return category
     .toLowerCase()
@@ -55,23 +12,35 @@ function slugifyCategory(category: string) {
 }
 
 export default function CategoriesPage() {
-  // 新增：用来保存异步加载的工具数据
+  const [categories, setCategories] = useState<string[]>([]);
   const [tools, setTools] = useState<any[]>([]);
+  const [meta, setMeta] = useState<Record<string, { icon: string; desc: string }>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/AI tool.json")
-      .then(res => res.json())
-      .then(data => {
-        setTools(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    Promise.all([
+      fetch("/AI%20tool.json").then(res => res.json()),
+      fetch("/categories-meta.json").then(res => res.json())
+    ]).then(([toolList, metaObj]) => {
+      // 动态提取所有唯一分类，按首次出现顺序
+      const seen = new Set<string>();
+      const cats: string[] = [];
+      for (const tool of toolList) {
+        if (tool.category && !seen.has(tool.category)) {
+          seen.add(tool.category);
+          cats.push(tool.category);
+        }
+      }
+      setCategories(cats);
+      setTools(toolList);
+      setMeta(metaObj);
+      setLoading(false);
+    }).catch(() => setLoading(false));
   }, []);
 
   // 统计每个分类下的工具数量
   const categoryStats = useMemo(() => {
-    return CATEGORY_LIST.map(cat => {
+    return categories.map(cat => {
       const toolsInCat = tools.filter(t => t.category === cat);
       return {
         name: cat,
@@ -79,7 +48,7 @@ export default function CategoriesPage() {
         tools: toolsInCat
       };
     });
-  }, [tools]);
+  }, [categories, tools]);
 
   if (loading) {
     return (
@@ -97,7 +66,7 @@ export default function CategoriesPage() {
         <p className="text-gray-500 mb-8 text-center">Browse all AI tool categories and discover the best tools for your needs.</p>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
           {categoryStats.map(cat => {
-            const meta = categoryMeta[cat.name] || { icon: "📦", desc: "AI tool category." };
+            const metaItem = meta[cat.name] || { icon: "📦", desc: `AI tools for ${cat.name.toLowerCase()}.` };
             const topTools = cat.tools.slice(0, 3);
             return (
               <Link
@@ -107,10 +76,10 @@ export default function CategoriesPage() {
                 style={{ minHeight: 180 }}
               >
                 <div className="flex items-center mb-2">
-                  <span className="text-2xl mr-2">{meta.icon}</span>
+                  <span className="text-2xl mr-2">{metaItem.icon}</span>
                   <span className="text-lg font-semibold text-gray-800 group-hover:text-indigo-700 transition">{cat.name}</span>
                 </div>
-                <div className="text-gray-500 text-sm mb-2 min-h-[36px]">{meta.desc}</div>
+                <div className="text-gray-500 text-sm mb-2 min-h-[36px]">{metaItem.desc}</div>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-xs bg-indigo-100 text-indigo-700 rounded-full px-2 py-0.5">{cat.count} tools</span>
                   {topTools.map(t => t.screenshot && (

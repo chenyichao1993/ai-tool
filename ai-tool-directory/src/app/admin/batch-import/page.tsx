@@ -5,7 +5,7 @@ export default function BatchImportPage() {
   const [file, setFile] = useState<File | null>(null);
   const [format, setFormat] = useState<'csv' | 'json'>('csv');
   const [isUploading, setIsUploading] = useState(false);
-  const [result, setResult] = useState<{success: boolean, message: string} | null>(null);
+  const [result, setResult] = useState<{success: boolean, message: string, details?: { name: string, status: 'success' | 'duplicate' | 'failed', reason?: string }[]} | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -117,11 +117,40 @@ export default function BatchImportPage() {
         </form>
 
         {result && (
-          <div className={`mt-4 p-4 rounded-lg ${
-            result.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
-          }`}>
-            {result.message}
-          </div>
+          <>
+            <div className={`mt-4 p-4 rounded-lg ${
+              result.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            }`}>
+              {result.message}
+            </div>
+            {/* 详细导入结果表格 */}
+            {Array.isArray(result.details) && result.details.length > 0 && (
+              <div className="mt-4">
+                <table className="min-w-full border text-sm bg-white">
+                  <thead>
+                    <tr>
+                      <th className="border px-2 py-1">工具名称</th>
+                      <th className="border px-2 py-1">状态</th>
+                      <th className="border px-2 py-1">原因</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {result.details.map((item, idx) => (
+                      <tr key={item.name + idx}>
+                        <td className="border px-2 py-1">{item.name}</td>
+                        <td className="border px-2 py-1">
+                          {item.status === 'success' && <span className="text-green-600">成功</span>}
+                          {item.status === 'duplicate' && <span className="text-yellow-600">重复</span>}
+                          {item.status === 'failed' && <span className="text-red-600">失败</span>}
+                        </td>
+                        <td className="border px-2 py-1">{item.reason || '-'}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </>
         )}
       </div>
 
