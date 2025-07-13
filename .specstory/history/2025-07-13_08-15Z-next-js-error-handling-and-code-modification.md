@@ -1852,11 +1852,43 @@ _**User**_
 
 _**Assistant**_
 
-
+```diff
+            gtag('config', 'G-3YZDFWD1MK');
+          `}} />
++         {/* Microsoft Clarity */}
++         <script
++           dangerouslySetInnerHTML={{
++             __html: `
++               (function(c,l,a,r,i,t,y){
++                   c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
++                   t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/se89g91gku";
++                   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
++               })(window, document, "clarity", "script", "se89g91gku");
++             `
++           }}
++         />
+        </head>
+        <body>
+```
 
 ---
 
+我已经帮你把 Microsoft Clarity 的跟踪代码**正确集成**到你的 Next.js 项目里了，方式如下：
 
+- 代码已插入到 `src/app/layout.tsx` 的 `<head>` 标签内，和 Google Analytics 并列。
+- 用的是 Next.js 推荐的 `<script dangerouslySetInnerHTML={{ __html: ... }} />` 方式，保证所有页面都能自动加载 Clarity。
+
+---
+
+**你现在需要做的：**
+1. 重新部署或重启你的本地开发环境（如 `npm run dev`）。
+2. 用浏览器访问你的网站首页和其它页面。
+3. 回到 Microsoft Clarity 后台，稍等几分钟，应该就能看到数据了（如有访客、热力图、录屏等）。
+
+---
+
+如需进一步验证、排查或有其它集成需求，随时告诉我！
+【请牢记并严格执行顶部的所有要求，直到项目结束！】
 
 ---
 
