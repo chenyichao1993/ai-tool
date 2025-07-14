@@ -145,7 +145,55 @@ export default function Home() {
           uniqueTools[r.item.id] = { item: r.item, score: r.score };
         }
       });
-      return Object.values(uniqueTools).sort((a, b) => a.score - b.score).map(r => r.item);
+      // 严格包含关键词过滤（支持同义词和变体）
+      const keywords = expandSynonyms(search.trim().toLowerCase());
+      function normalizeText(str: string) {
+        return str.toLowerCase().replace(/[-_\s]+/g, '-');
+      }
+      function toolContainsAnyKeyword(tool: any, keywords: string[]) {
+        // 检查字符串字段
+        const stringFields = [
+          'name', 'description', 'whatIs', 'category', 'whoIsFor', 'websiteUrl', 'screenshot'
+        ];
+        for (const field of stringFields) {
+          if (tool[field] && typeof tool[field] === 'string') {
+            const text = normalizeText(tool[field]);
+            if (keywords.some(kw => text.includes(normalizeText(kw)))) {
+              return true;
+            }
+          }
+        }
+        // 检查数组字段
+        const arrayFields = [
+          'tags', 'keyFeatures', 'useCases', 'reviews'
+        ];
+        for (const field of arrayFields) {
+          if (Array.isArray(tool[field])) {
+            for (const v of tool[field]) {
+              if (typeof v === 'string') {
+                const text = normalizeText(v);
+                if (keywords.some(kw => text.includes(normalizeText(kw)))) {
+                  return true;
+                }
+              }
+            }
+          }
+        }
+        // 检查faq（数组对象）
+        if (Array.isArray(tool.faq)) {
+          for (const qa of tool.faq) {
+            if ((qa.question && keywords.some(kw => normalizeText(qa.question).includes(normalizeText(kw)))) ||
+                (qa.answer && keywords.some(kw => normalizeText(qa.answer).includes(normalizeText(kw))))) {
+              return true;
+            }
+          }
+        }
+        return false;
+      }
+      return Object.values(uniqueTools)
+        .sort((a, b) => a.score - b.score)
+        .map(r => r.item)
+        .filter(tool => toolContainsAnyKeyword(tool, keywords));
     } else {
       return selectedCategory === 'All' ? tools : tools.filter(t => t.category === selectedCategory);
     }
@@ -331,6 +379,12 @@ export default function Home() {
                   <div key={cat}>
                     <div className="flex items-center justify-between mb-4">
                       <h2 className="text-2xl font-bold text-gray-900">{cat}</h2>
+                      <button
+                        className="text-indigo-600 hover:underline text-sm font-medium"
+                        onClick={() => handleShowAll(cat)}
+                      >
+                        More »
+                      </button>
                     </div>
                     <div className="grid gap-3 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                       {groupedTools[cat].slice(0, 8).map((tool, idx) => (
