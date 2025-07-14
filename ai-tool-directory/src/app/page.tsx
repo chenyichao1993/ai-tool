@@ -87,10 +87,19 @@ export default function Home() {
         // 初始化 fuse
         fuseRef.current = new Fuse(toolsWithId, {
           keys: [
-            'name',
-            'category',
-            'description',
-            'tags',
+            { name: 'name', weight: 0.45 },
+            { name: 'description', weight: 0.18 },
+            { name: 'whatIs', weight: 0.18 },
+            { name: 'tags', weight: 0.07 },
+            { name: 'category', weight: 0.07 },
+            { name: 'keyFeatures', weight: 0.04 },
+            { name: 'useCases', weight: 0.04 },
+            { name: 'whoIsFor', weight: 0.02 },
+            { name: 'faq.question', weight: 0.01 },
+            { name: 'faq.answer', weight: 0.01 },
+            { name: 'reviews', weight: 0.01 },
+            { name: 'websiteUrl', weight: 0.01 },
+            { name: 'screenshot', weight: 0.01 }
           ],
           threshold: 0.38, // 模糊度，越低越严格
           ignoreLocation: true,
@@ -304,6 +313,19 @@ export default function Home() {
                 <span className="text-gray-400 text-xl">No tools found. Please try another keyword.</span>
               </div>
             ) : (
+              <div className="grid gap-3 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                {filteredTools.map((tool, idx) => (
+                  <ToolCard key={idx} tool={tool} />
+                ))}
+              </div>
+            )
+          ) : (
+            // 原有分组渲染逻辑
+            filteredTools.length === 0 ? (
+              <div className="flex items-center justify-center w-full" style={{ minHeight: '220px' }}>
+                <span className="text-gray-400 text-xl">No tools found. Please try another keyword.</span>
+              </div>
+            ) : (
               <div className="flex flex-col gap-12 w-full">
                 {categories.filter(cat => groupedTools[cat].length > 0).map(cat => (
                   <div key={cat}>
@@ -311,64 +333,13 @@ export default function Home() {
                       <h2 className="text-2xl font-bold text-gray-900">{cat}</h2>
                     </div>
                     <div className="grid gap-3 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                      {groupedTools[cat].map((tool, idx) => (
+                      {groupedTools[cat].slice(0, 8).map((tool, idx) => (
                         <ToolCard key={idx} tool={tool} />
                       ))}
                     </div>
                   </div>
                 ))}
               </div>
-            )
-          ) : (
-            isCategoryPage ? (
-              <div className="w-full">
-                <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-2xl font-bold text-gray-900">{selectedCategory}</h2>
-                  <button
-                    className="text-indigo-600 hover:underline text-sm font-medium"
-                    onClick={() => window.open(`/categories/${slugifyCategory(selectedCategory)}`, '_blank')}
-                  >
-                    More »
-                  </button>
-                </div>
-                <div className="grid gap-3 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                  {groupedTools[selectedCategory]?.length ? (
-                    groupedTools[selectedCategory].slice(0, 8).map((tool, idx) => (
-                      <ToolCard key={idx} tool={tool} />
-                    ))
-                  ) : (
-                    <div className="col-span-full text-center text-gray-400 py-8">未找到相关工具</div>
-                  )}
-                </div>
-              </div>
-            ) : (
-              filteredTools.length === 0 ? (
-                <div className="flex items-center justify-center w-full" style={{ minHeight: '220px' }}>
-                  <span className="text-gray-400 text-xl">No tools found. Please try another keyword.</span>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-12 w-full">
-                  {categories.filter(cat => groupedTools[cat].length > 0).map(cat => (
-                    <div key={cat}>
-                      <div className="flex items-center justify-between mb-4">
-                        <h2 className="text-2xl font-bold text-gray-900">{cat}</h2>
-                        {/* Check all XXX tools按钮始终显示 */}
-                        <button
-                          className="text-indigo-600 hover:underline text-sm font-medium"
-                          onClick={() => handleShowAll(cat)}
-                        >
-                          More »
-                        </button>
-                      </div>
-                      <div className="grid gap-3 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                        {groupedTools[cat].slice(0, 8).map((tool, idx) => (
-                          <ToolCard key={idx} tool={tool} />
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )
             )
           )}
         </div>
