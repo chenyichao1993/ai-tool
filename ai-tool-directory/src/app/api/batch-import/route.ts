@@ -196,6 +196,8 @@ export async function POST(request: NextRequest) {
     // 合并并保存
     const mergeResult = mergeTools(validTools);
     mergedTools = mergeResult.mergedTools;
+    // 修复：写回AI tool.json，确保数据真正保存
+    saveTools(mergedTools);
     // 自动同步分类
     syncCategoriesMeta();
     // 统计
